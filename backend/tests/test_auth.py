@@ -188,3 +188,91 @@ def test_valid_bearer_token_resolves_correct_user():
         assert body["name"] == "Student"
     finally:
         _cleanup_user_by_email(email)
+
+
+def test_jwt_missing_sub_returns_401_invalid_token():
+    protected_app = FastAPI()
+
+    @protected_app.get("/protected")
+    def protected(current_user=Depends(get_current_user)):
+        return {"id": current_user.id}
+
+    token = create_access_token({"role": "PROJECT_MANAGER"})
+    response = TestClient(protected_app).get(
+        "/protected",
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert response.status_code == 401
+    assert response.json()["detail"] == "INVALID_TOKEN"
+
+
+def test_jwt_non_numeric_sub_returns_401_invalid_token_not_500():
+    protected_app = FastAPI()
+
+    @protected_app.get("/protected")
+    def protected(current_user=Depends(get_current_user)):
+        return {"id": current_user.id}
+
+    # Test string non-numeric sub
+    token_str = create_access_token({"sub": "admin_uuid_not_int"})
+    response_str = TestClient(protected_app).get(
+        "/protected",
+        headers={"Authorization": f"Bearer {token_str}"},
+    )
+    assert response_str.status_code == 401
+    assert response_str.json()["detail"] == "INVALID_TOKEN"
+
+    # Test complex non-convertible type sub
+    token_obj = create_access_token({"sub": ["nested", "list"]})
+    response_obj = TestClient(protected_app).get(
+        "/protected",
+        headers={"Authorization": f"Bearer {token_obj}"},
+    )
+    assert response_obj.status_code == 401
+    assert response_obj.json()["detail"] == "INVALID_TOKEN"
+
+
+def test_jwt_referencing_nonexistent_user_returns_401_invalid_token():
+    protected_app = FastAPI()
+
+    @protected_app.get("/protected")
+    def protected(current_user=Depends(get_current_user)):
+        return {"id": current_user.id}
+
+    token = create_access_token({"sub": "99999999"})
+    response = TestClient(protected_app).get(
+        "/protected",
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert response.status_code == 401
+    assert response.json()["detail"] == "INVALID_TOKEN"
+
+
+def test_jwt_valid_numeric_sub_authenticates_successfully():
+    protected_app = FastAPI()
+
+    @protected_app.get("/protected")
+    def protected(current_user=Depends(get_current_user)):
+        return {"id": current_user.id, "email": current_user.email}
+
+    email = _unique_email("numsub")
+    payload = {"name": "Student", "email": email, "password": "password123"}
+
+    try:
+        register = TestClient(app).post("/api/auth/register", json=payload)
+        assert register.status_code == 201, register.text
+
+        with SessionLocal() as db:
+            user = db.query(User).filter(User.email == email).one()
+            token = create_access_token({"sub": str(user.id)})
+
+        response = TestClient(protected_app).get(
+            "/protected",
+            headers={"Authorization": f"Bearer {token}"},
+        )
+        assert response.status_code == 200, response.text
+        body = response.json()
+        assert body["email"] == email
+        assert body["id"] == user.id
+    finally:
+        _cleanup_user_by_email(email)
