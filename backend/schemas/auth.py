@@ -1,8 +1,5 @@
-from pydantic import BaseModel, ConfigDict, Field
-
-
-class BaseSchema(BaseModel):
-    model_config = ConfigDict(populate_by_name=True, from_attributes=True)
+from pydantic import Field
+from backend.schemas.base import BaseSchema
 
 
 class UserRegisterRequest(BaseSchema):

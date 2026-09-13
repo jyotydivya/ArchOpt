@@ -59,7 +59,7 @@ def upgrade() -> None:
         sa.Column('min_road_width', sa.Float(), nullable=False),
         sa.Column('min_building_gap', sa.Float(), nullable=False),
         sa.Column('entrance_data', postgresql.JSONB(astext_type=sa.Text()), nullable=False),
-        sa.Column('road_data', postgresql.JSONB(astext_type=sa.Text()), nullable=False),
+        sa.Column('road_data', postgresql.JSONB(astext_type=sa.Text()), nullable=False, server_default=sa.text("'[]'::jsonb")),
         sa.ForeignKeyConstraint(['project_id'], ['projects.id'], ondelete='CASCADE'),
         sa.PrimaryKeyConstraint('id'),
         sa.UniqueConstraint('project_id')

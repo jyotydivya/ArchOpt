@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
@@ -22,8 +23,17 @@ def register_user(payload: UserRegisterRequest, db: Session = Depends(get_db)):
         role="PROJECT_MANAGER",
     )
     db.add(user)
-    db.commit()
-    db.refresh(user)
+    try:
+        db.commit()
+        db.refresh(user)
+    except IntegrityError as exc:
+        db.rollback()
+        orig = getattr(exc, "orig", None)
+        pgcode = getattr(orig, "pgcode", None)
+        err_msg = str(exc).lower()
+        if pgcode == "23505" or "email" in err_msg or "unique" in err_msg:
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="EMAIL_ALREADY_EXISTS")
+        raise
 
     return UserRegisterResponse(
         id=user.id,

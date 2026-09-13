@@ -239,20 +239,20 @@ def test_successful_layout_detail_retrieval_and_schema():
         assert body["site"]["width"] == 300.0
         assert body["site"]["height"] == 300.0
 
-        # Buildings list
+        # Buildings list (Contract 6/7 candidate positions only)
         assert len(body["buildings"]) == len(buildings)
         for b in body["buildings"]:
-            assert "id" in b
-            assert "name" in b
-            assert "type" in b
-            assert "zone" in b
-            assert "width" in b
-            assert "depth" in b
-            assert "height" in b
-            assert "floorCount" in b
+            assert "buildingId" in b
             assert "x" in b
             assert "y" in b
             assert "rotation" in b
+            assert "name" not in b
+            assert "type" not in b
+            assert "zone" not in b
+            assert "width" not in b
+            assert "depth" not in b
+            assert "height" not in b
+            assert "floorCount" not in b
 
         # Contract arrays
         assert body["roads"] == []

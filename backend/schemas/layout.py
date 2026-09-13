@@ -1,10 +1,7 @@
 from typing import Optional, List, Dict, Any
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import Field
+from backend.schemas.base import BaseSchema
 from backend.schemas.requirement import EntranceSchema
-
-
-class BaseSchema(BaseModel):
-    model_config = ConfigDict(populate_by_name=True, from_attributes=True)
 
 
 class LayoutRunCreateRequest(BaseSchema):
@@ -56,7 +53,7 @@ class LayoutDetailResponse(BaseSchema):
     rank: int
     feasible: bool = True
     site: SiteDimensionSchema
-    buildings: List[Any] = Field(default_factory=list)
+    buildings: List[CandidateBuildingPosition] = Field(default_factory=list)
     roads: List[Any] = Field(default_factory=list)
     green_areas: List[Any] = Field(default_factory=list, alias="greenAreas")
     parking_areas: List[Any] = Field(default_factory=list, alias="parkingAreas")

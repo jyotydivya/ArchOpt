@@ -1174,13 +1174,17 @@ The table below distinguishes dependencies verified in the repository from upstr
 | **Python** | Persons 1, 2, 3, 4, 6 | `3.11.x` (Verified `3.11.9`) | **Required** | Runtime for backend, ML pipeline, and optimizer |
 | **pip / venv** | Persons 1, 2, 3, 4 | Standard with Python 3.11 | **Required** | Package management and virtual environment isolation |
 | **PostgreSQL** | Person 4 (Backend) | `>= 15.0` (Docker container) | **Required for P4** (Optional for P1, P2, P3, P5, P6) | Relational persistence for the 8 contract tables |
-| **Node.js & npm** | Person 5 (Frontend) | `>= 18.0` / npm `>= 9.0` | **Required for P5** (Optional for others) | React / Vite development server and build tools |
-| **Blender** | Person 6 (3D) | `>= 3.6 LTS` / `4.x` | **Required for P6** (Optional for others) | Procedural 3D scene execution and rendering |
+| **Node.js & npm** | Person 5 (Frontend) | `>= 18.0` (Verified `22.17.0`) | **Required for P5** (Optional for others) | React / Vite development server and build tools |
+| **Blender** | Person 6 (3D) | `>= 3.6 LTS` / `4.x` | **Required for P6 ONLY** | Procedural 3D scene execution and rendering (Not required for backend or P3 optimizer) |
 | **PyTorch & PyG** | Person 1, Person 2 | *To be declared by P1/P2* | **Required for P1/P2** | Graph neural network training and inference |
-| **pymoo / Shapely**| Person 3 (Optimizer) | *To be declared by P3* | **Required for P3** | NSGA-II multi-objective optimization & geometry |
+| **pymoo / Shapely**| Person 3 (Optimizer) | `optimization/requirements.txt` | **Required for P3** | NSGA-II multi-objective optimization & geometry |
 
 > [!NOTE]
-> *Dependency Declaration Note*: P1, P2, and P3 dependencies (such as `torch`, `torch-geometric`, `pymoo`, `shapely`) are **not** currently locked in the backend `requirements.txt` to keep the backend lightweight and decouple development. These dependencies must be supplied/declared by the respective module owners in their feature branches.
+> *Prerequisite Notes for Clean Developer Onboarding*:
+> 1. **Blender**: Blender 3.6 LTS or 4.x is a standalone desktop application required **only** for Person 6 (3D procedural generation). It is **not** required for running the backend API server, applying database migrations, running backend tests, or executing Person 3's optimization engine.
+> 2. **Node.js**: Node.js 18+ is required exclusively for Person 5's React frontend development.
+> 3. **P3 Optimization Dependencies**: Locked in `optimization/requirements.txt` (`numpy`, `shapely`, `pymoo`, `pytest`, `pytest-cov`). P3 also includes a pure-Python NSGA-II fallback if `pymoo` is absent.
+> 4. **Backend Test Dependencies**: Running backend unit/contract tests requires `pytest` and `httpx` (used by FastAPI's `TestClient`).
 
 ---
 
@@ -1208,7 +1212,7 @@ git checkout -b feature/person-<N>-<module-name>
 
 ---
 
-### 16.3 Python Virtual Environment
+### 16.3 Python Virtual Environment & Dependency Installation
 
 Create and activate an isolated Python 3.11 virtual environment in the repository root:
 
@@ -1224,29 +1228,52 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-#### Install Verified Backend Dependencies:
-The repository provides a clean `requirements.txt` locking core backend dependencies:
+#### Install Dependencies:
+The repository cleanly separates core backend runtime dependencies from optimization and test tooling:
+
 ```bash
+# 1. Install core backend production runtime dependencies
 pip install -r requirements.txt
+
+# 2. Install testing & optimization dependencies (installs pytest, httpx, pymoo, shapely, etc.)
+pip install -r optimization/requirements.txt httpx
 ```
+
+> [!TIP]
+> Root `requirements.txt` locks core backend dependencies (`fastapi`, `uvicorn`, `pydantic`, `sqlalchemy`, `psycopg2-binary`, `alembic`, `PyJWT`, `bcrypt`).
+> Backend tests require `pytest` and `httpx` (for `TestClient`). Installing `optimization/requirements.txt` and `httpx` equips the virtual environment for both backend tests and Person 3 standalone optimization work.
 
 #### Verify Installation:
 ```bash
 python --version   # Must output Python 3.11.x
-pip list           # Must show fastapi, sqlalchemy, alembic, pydantic, PyJWT, bcrypt
+pip list           # Must show fastapi, sqlalchemy, alembic, pydantic, PyJWT, bcrypt, pytest, httpx
 ```
 
 ---
 
-### 16.4 Environment Variables
+### 16.4 Environment Variables & Mandatory `.env` Setup
 
 The backend uses `pydantic-settings` to load configuration from environment variables or a local `.env` file.
 
-Copy the provided template to create your `.env`:
-```bash
-cp .env.example .env     # Linux / macOS
-copy .env.example .env   # Windows
+> [!IMPORTANT]
+> **Mandatory Step Before Database Migrations or Server Startup**:
+> You **must** create your `.env` file before executing `python -m alembic upgrade head` or starting Uvicorn.
+> Alembic's migration environment (`alembic/env.py`) imports `backend.config.settings`, which requires `SECRET_KEY`.
+> Because `SECRET_KEY` has no default fallback value, omitting `.env` causes Alembic and FastAPI to crash immediately with a Pydantic `ValidationError`.
+>
+> Copy the provided template to create your `.env`:
+
+#### On Windows (PowerShell / Command Prompt):
+```powershell
+copy .env.example .env
 ```
+
+#### On Linux / macOS (Bash):
+```bash
+cp .env.example .env
+```
+
+*(Do not invent real secret keys in shared code; `.env.example` provides verified development defaults and placeholders).*
 
 #### Configuration Reference Table
 
@@ -1283,11 +1310,14 @@ The backend stores all entities in PostgreSQL across the **8 contract tables**:
 8. `selected_plans`
 
 #### Recommended Setup via Docker:
-Run a dedicated PostgreSQL 15+ container matching the default `backend/config.py` configuration:
+> [!NOTE]
+> The repository does **not** contain a `docker-compose.yml` file. Developers should run the standalone `docker run` command below.
+
+Run a dedicated PostgreSQL 15+ container matching the default `backend/config.py` configuration (port `5433` maps to internal `5432` to avoid conflicting with any native PostgreSQL running locally):
 ```bash
 docker run --name archopt-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=campus_planner -p 5433:5432 -d postgres:15
 ```
-*(If running native local PostgreSQL on port 5432, update `DATABASE_URL` in `.env` to port 5432).*
+*(If running native local PostgreSQL on port 5432 instead of Docker, update `DATABASE_URL` in `.env` to port 5432).*
 
 ---
 
@@ -1296,6 +1326,7 @@ docker run --name archopt-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWOR
 Run database migrations to generate all 8 contract tables in PostgreSQL:
 
 ```bash
+# Ensure .env exists with SECRET_KEY before running migrations!
 # Apply migrations to head
 python -m alembic upgrade head
 
@@ -1338,7 +1369,7 @@ INFO:     Application startup complete.
 Follow these 9 verification steps to confirm system health on a fresh machine:
 1. Ensure PostgreSQL container is running (`docker ps` shows `archopt-postgres`).
 2. Activate `.venv`.
-3. Ensure `.env` exists with valid `SECRET_KEY`.
+3. Ensure `.env` exists with valid `SECRET_KEY` (copied from `.env.example`).
 4. Run `python -m alembic current` $\rightarrow$ must show `001_initial_schema (head)`.
 5. Start backend: `python -m uvicorn backend.main:app --port 8000`.
 6. Open browser to `http://localhost:8000/docs`.
@@ -1348,20 +1379,36 @@ Follow these 9 verification steps to confirm system health on a fresh machine:
 
 ---
 
-### 16.9 Running the Automated Test Suite
+### 16.9 Running the Automated Test Suites
 
-Execute the complete 70-test backend verification suite:
+#### Important: `pyproject.toml` Testpath Nuance
+`pyproject.toml` defines default test options:
+```toml
+[tool.pytest.ini_options]
+testpaths = ["optimization/tests"]
+addopts = "-v --tb=short"
+```
+Because `testpaths` defaults to `["optimization/tests"]`, invoking bare `pytest` executes **only** Person 3's optimization tests and will omit the backend test suite.
+
+#### Explicit Test Execution Commands:
+Developers should always run tests with explicit path arguments:
 
 ```bash
-# Quick summary execution
-python -m pytest backend/tests -q
+# 1. Run the backend contract verification test suite
+pytest backend/tests -v
 
-# Verbose execution with full test case names
-python -m pytest backend/tests -v
+# 2. Run the Person 3 optimization test suite
+pytest optimization/tests/ -v
+
+# 3. Run all test suites in the repository
+pytest backend/tests optimization/tests/ -v
 ```
 
-- **Expected Result**: `70 passed in ~60s` (Exit Code 0).
-- **Rule for Teammates**: All existing 70 tests must remain GREEN at all times. If a teammate adds tests for their module, they must add them in their own test file without modifying or breaking existing tests.
+- **Pass Criteria**: Both test suites must complete with **0 failures**.
+- **Informational Baseline Counts**:
+  - `backend/tests/`: Currently **89 passed** tests (covering all 17 master REST APIs, security, schemas, and P3 boundary).
+  - `optimization/tests/`: Currently **104 passed** tests (covering constraint checkers, NSGA-II solver, objectives, and ranking).
+- **Rule for Teammates**: All existing tests must remain GREEN at all times. When adding new modules, write tests in your designated module directory without modifying or weakening existing tests.
 
 ---
 
@@ -1380,10 +1427,60 @@ python -m pytest backend/tests -v
 - **Verification**: Ensure output matches Data Contract 6 (`candidateId`, `siteWidth`, `siteHeight`, `buildings: [{buildingId, x, y, rotation}]`).
 
 #### PERSON 3 (NSGA-II Optimizer):
-- **Local Requirements**: Git, Python 3.11, virtual environment, `pymoo`, `shapely`.
+- **Local Requirements**: Git, Python 3.11, virtual environment, `optimization/requirements.txt` (`numpy`, `shapely`, `pymoo`, `pytest`).
 - **Database Needed?**: **NO direct PostgreSQL access needed.** Person 3 receives candidate layouts, requirements, and constraints from Person 4's orchestrator.
 - **Deliverable**: `optimization/optimizer.py` exporting `optimize_layouts(candidates, requirements, constraints, top_k=5) -> list[RankedLayout]`.
 - **Verification**: Ensure output matches Data Contract 8 (`candidateId`, `rank`, `feasible`, `buildings`, `metrics`).
+
+##### Person 3 Standalone Verification Workflow:
+Person 3's standalone optimization engine can be tested and verified locally without Person 1, Person 2, or a running backend:
+```bash
+# 1. Install optimization dependencies
+pip install -r optimization/requirements.txt
+
+# 2. Run standalone optimization demo
+python -m optimization.optimizer
+
+# 3. View interactive comparison in browser
+start output\comparison.html   # Windows
+# (or open output/comparison.html in your browser on Linux/macOS)
+
+# 4. Run optimization test suite
+pytest optimization/tests/ -v
+```
+
+##### Standalone Output Artifacts:
+Executing `python -m optimization.optimizer` executes Person 3's pipeline against 100 mock candidate layouts on a 300 × 300 m campus, ranks the top 5 feasible layouts, and outputs:
+- `output/ranked_layouts.json` — Top-5 Pareto-ranked layouts in JSON format.
+- `output/layout_1.svg` through `output/layout_5.svg` — Visual annotated SVGs for each ranked plan.
+- `output/comparison.html` — Interactive browser-based side-by-side comparison page.
+
+> [!NOTE]
+> **Standalone Mock Data Scope**: Person 3's standalone demo currently generates candidate layouts using its internal heuristic candidate generator (`optimization/mock_data.py`). This allows isolated verification of the constraint engine, NSGA-II solver, and SVG visualizer. It is a standalone testing mechanism and does **not** imply that Person 1 or Person 2 are implemented.
+
+---
+
+### 16.10.1 Person 3 → Backend Integration Status
+
+The backend boundary interfacing Person 4 with Person 3 is fully implemented and regression-tested in `backend/services/ml_bridge.py`:
+- **Input Adapters**:
+  - `_adapt_requirements_to_p3`: Adapts backend dictionary requirements into P3 `CampusRequirements` and `Entrance` dataclasses.
+  - `_adapt_constraints_to_p3`: Adapts backend constraint dictionaries into P3 `Constraint` dataclasses.
+- **Output Normalization**:
+  - `validate_and_format_ranked_layout`: Validates P3's rich `RankedLayout` and `CandidateBuilding` objects, strips auxiliary geometry metadata, and normalizes them into clean Contract 8 records (`candidateId`, `rank`, `feasible`, `buildings: [{buildingId, x, y, rotation}]`, `metrics`) for database persistence and REST API delivery, strictly enforcing `extra="forbid"`.
+
+#### Integration Status Summary:
+- **Currently Working & Verified**:
+  - Backend $\leftrightarrow$ Person 3 adapter boundary (`ml_bridge.py`)
+  - Person 3 standalone optimizer (`optimization/optimizer.py`)
+  - Full backend test suite (`pytest backend/tests -v`) — 0 failures
+  - Full optimization test suite (`pytest optimization/tests/ -v`) — 0 failures
+- **Not Yet Implemented**:
+  - Person 1 Graph Builder (`ml/dataset/graph_builder.py`)
+  - Person 2 GNN Candidate Generator (`ml/inference/generate.py`)
+  - Full production P1 $\rightarrow$ P2 $\rightarrow$ P3 real pipeline (currently raises `422 GENERATION_FAILED` in REAL mode when P1/P2 are called without mocks)
+
+---
 
 #### PERSON 4 (Backend / Orchestration):
 - **Local Requirements**: Git, Python 3.11, virtual environment, PostgreSQL, Docker, Alembic.
@@ -1429,14 +1526,16 @@ Complete this checklist within 30 minutes of cloning the repository:
 - [ ] 1. Clone repository: `git clone https://github.com/jyotydivya/ArchOpt.git`
 - [ ] 2. Checkout your feature branch: `git checkout -b feature/p<N>-<name>`
 - [ ] 3. Create virtual environment: `python -m venv .venv` and activate it.
-- [ ] 4. Install dependencies: `pip install -r requirements.txt`
-- [ ] 5. Copy configuration: `cp .env.example .env`
+- [ ] 4. Install dependencies: `pip install -r requirements.txt -r optimization/requirements.txt httpx`
+- [ ] 5. Copy configuration (Mandatory before migrations!): `copy .env.example .env` (Windows) or `cp .env.example .env` (Linux/macOS)
 - [ ] 6. Start PostgreSQL container: `docker run --name archopt-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=campus_planner -p 5433:5432 -d postgres:15`
 - [ ] 7. Apply migrations: `python -m alembic upgrade head`
 - [ ] 8. Verify migration status: `python -m alembic current` $\rightarrow$ `001_initial_schema (head)`
-- [ ] 9. Run test suite: `python -m pytest backend/tests -q` $\rightarrow$ `70 passed`
-- [ ] 10. Start server: `python -m uvicorn backend.main:app --port 8000`
-- [ ] 11. Open Swagger at `http://localhost:8000/docs` and test `POST /api/auth/register`.
+- [ ] 9. Run backend tests: `pytest backend/tests -q` $\rightarrow$ Must complete with 0 failures (currently 89 tests).
+- [ ] 10. Run optimization tests: `pytest optimization/tests -q` $\rightarrow$ Must complete with 0 failures (currently 104 tests).
+- [ ] 11. Run P3 standalone demo: `python -m optimization.optimizer` $\rightarrow$ Generates artifacts in `output/`.
+- [ ] 12. Start server: `python -m uvicorn backend.main:app --port 8000`
+- [ ] 13. Open Swagger at `http://localhost:8000/docs` and test `POST /api/auth/register`.
 
 ---
 
@@ -1475,12 +1574,12 @@ Complete this checklist within 30 minutes of cloning the repository:
 
 | Checkpoint | Milestone | Owner | Input | Expected Output | Verification Command | Blocking Condition |
 |:---:|---|:---:|---|---|---|---|
-| **CP 1** | Repository Cloned & Verified | All | Git clone | Clean environment | `python -m pytest backend/tests -q` | Must pass 70/70 tests |
+| **CP 1** | Repository Cloned & Verified | All | Git clone | Clean environment | `pytest backend/tests -q` | Must pass with 0 failures |
 | **CP 2** | Database & Alembic Verified | P4 | Migrations | 8 tables in PostgreSQL | `python -m alembic current` | Must show `001_initial_schema (head)` |
 | **CP 3** | REST APIs in MOCK Mode | P4 / P5 | Mock layout run | Top-5 layouts generated | `POST /api/projects/{id}/layout-runs` | Blocks P5/P6 if failing |
 | **CP 4** | P1 Graph Builder Delivery | P1 | `campus_data: dict` | Contract 5 `CampusGraph` | Unit test in `ml/dataset/tests/` | Blocks Person 2 |
 | **CP 5** | P2 GNN Generator Delivery | P2 | `CampusGraph` | 100 `CandidateLayout` objects | Unit test in `ml/inference/tests/` | Blocks Person 3 |
-| **CP 6** | P3 NSGA-II Optimizer Delivery | P3 | 100 candidates + constraints | Top-5 `RankedLayout` objects | Unit test in `optimization/tests/` | Blocks REAL pipeline |
+| **CP 6** | P3 NSGA-II Optimizer Delivery | P3 | 100 candidates + constraints | Top-5 `RankedLayout` objects | `pytest optimization/tests/ -q` & `python -m optimization.optimizer` | Blocks REAL pipeline |
 | **CP 7** | Backend REAL Mode Integration | P4 | `PIPELINE_MODE=real` | Real layouts stored in DB | `POST /layout-runs` in REAL mode | Blocks final system test |
 | **CP 8** | Frontend Complete Workflow | P5 | Backend REST APIs | Full UI planning workflow | Manual flow through React UI | Blocks end-to-end demo |
 | **CP 9** | Blender 3D Procedural Delivery | P6 | Contract 9 Blueprint | 3D Campus model & render | Blender headless execution test | Blocks final visual demo |
@@ -1493,14 +1592,16 @@ Complete this checklist within 30 minutes of cloning the repository:
 #### IF YOU JUST JOINED ARCHOPT, DO THIS:
 1. Clone repo: `git clone https://github.com/jyotydivya/ArchOpt.git && cd ArchOpt`
 2. Set up venv: `python -m venv .venv` and activate it.
-3. Install dependencies: `pip install -r requirements.txt`
-4. Create `.env`: `cp .env.example .env`
+3. Install dependencies: `pip install -r requirements.txt -r optimization/requirements.txt httpx`
+4. Create `.env` (**Mandatory before migrations**): `copy .env.example .env` (Windows) or `cp .env.example .env` (Linux/macOS).
 5. Start PostgreSQL container: `docker run --name archopt-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=campus_planner -p 5433:5432 -d postgres:15`
 6. Run migrations: `python -m alembic upgrade head`
-7. Verify baseline tests: `python -m pytest backend/tests -q` (Must show 70 passed).
-8. Start backend: `python -m uvicorn backend.main:app --port 8000`
-9. Open `http://localhost:8000/docs` to inspect the 17 live REST endpoints.
-10. Read your person-specific guide in this document and implement ONLY your owned module!
+7. Verify baseline backend tests: `pytest backend/tests -q` (Must complete with 0 failures; reference: 89 passed).
+8. Verify optimization tests: `pytest optimization/tests/ -q` (Must complete with 0 failures; reference: 104 passed).
+9. Run P3 standalone demo: `python -m optimization.optimizer` (Inspect generated `output/comparison.html`).
+10. Start backend: `python -m uvicorn backend.main:app --port 8000`
+11. Open `http://localhost:8000/docs` to inspect the 17 live REST endpoints.
+12. Read your person-specific guide in this document and implement ONLY your owned module!
 
 #### Architectural Responsibility & Dependency Matrix
 
