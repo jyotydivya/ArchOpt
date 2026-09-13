@@ -18,3 +18,11 @@ htmlcov/
 .vscode/
 .idea/
 .venv/
+
+# Blender generated files
+blender/output/*
+!blender/output/.gitkeep
+
+# Blender backup files
+*.blend1
+*.blend2
