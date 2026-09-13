@@ -147,30 +147,17 @@ def get_layout_detail(
     buildings_list: list[dict[str, Any]] = []
     for b_pos in candidate_buildings:
         b_id = b_pos.get("buildingId") or b_pos.get("id")
-        b_meta = buildings_by_id.get(b_id)
-        if b_meta:
-            buildings_list.append({
-                "id": b_meta.id,
-                "buildingId": b_meta.id,
-                "name": b_meta.name,
-                "type": b_meta.type,
-                "zone": b_meta.zone,
-                "width": float(b_meta.width),
-                "depth": float(b_meta.depth),
-                "height": float(b_meta.height),
-                "floorCount": int(b_meta.floor_count),
-                "x": float(b_pos.get("x", 0.0)),
-                "y": float(b_pos.get("y", 0.0)),
-                "rotation": float(b_pos.get("rotation", 0.0)),
-            })
-        else:
-            buildings_list.append({
-                "id": b_id,
-                "buildingId": b_id,
-                "x": float(b_pos.get("x", 0.0)),
-                "y": float(b_pos.get("y", 0.0)),
-                "rotation": float(b_pos.get("rotation", 0.0)),
-            })
+        if b_id is None or b_id not in buildings_by_id:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="DATA_INTEGRITY_ERROR",
+            )
+        buildings_list.append({
+            "buildingId": b_id,
+            "x": float(b_pos.get("x", 0.0)),
+            "y": float(b_pos.get("y", 0.0)),
+            "rotation": float(b_pos.get("rotation", 0.0)),
+        })
 
     return LayoutDetailResponse(
         id=layout.id,

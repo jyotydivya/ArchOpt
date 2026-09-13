@@ -84,15 +84,46 @@ def mock_generate(
     return mock_layouts
 
 
+def _validate_candidate_buildings(
+    candidates: list[dict[str, Any]],
+    expected_building_ids: set[int],
+) -> None:
+    for candidate in candidates:
+        layout_buildings = (
+            candidate.get("buildings")
+            or (candidate.get("layout", {}).get("buildings"))
+            or []
+        )
+        if not layout_buildings:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                detail="GENERATION_FAILED",
+            )
+        candidate_ids = set()
+        for b_pos in layout_buildings:
+            b_id = b_pos.get("buildingId") or b_pos.get("id")
+            if b_id is None or b_id not in expected_building_ids:
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail="GENERATION_FAILED",
+                )
+            candidate_ids.add(b_id)
+        if candidate_ids != expected_building_ids:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                detail="GENERATION_FAILED",
+            )
+
+
 def generate_layout_run(
     db: Session,
     project: Project,
     payload: LayoutRunCreateRequest,
 ) -> tuple[LayoutRun, list[Layout]]:
     """
-    Orchestrates layout generation for a project using the mock pipeline.
+    Orchestrates layout generation for a project using the mock or real pipeline.
     Validates requirements and buildings, creates a LayoutRun record,
-    generates top_k mock layouts, and persists Layout records.
+    generates top_k layouts, and persists Layout records.
     """
     requirements = (
         db.query(CampusRequirement)
@@ -116,7 +147,20 @@ def generate_layout_run(
             detail="INVALID_REQUIREMENTS",
         )
 
-    pipeline_mode = getattr(settings, "PIPELINE_MODE", "mock").lower()
+    raw_mode = getattr(settings, "PIPELINE_MODE", "mock")
+    if not isinstance(raw_mode, str):
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="INVALID_PIPELINE_MODE",
+        )
+    pipeline_mode = raw_mode.strip().lower()
+    if pipeline_mode not in ("mock", "real"):
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="INVALID_PIPELINE_MODE",
+        )
+
+    project_building_ids = {b.id for b in buildings}
 
     if pipeline_mode == "real":
         constraints = (
@@ -181,6 +225,8 @@ def generate_layout_run(
             top_k=payload.top_k,
         )
 
+        _validate_candidate_buildings(ranked_candidates, project_building_ids)
+
         layout_run = LayoutRun(
             project_id=project.id,
             algorithm=payload.algorithm,
@@ -214,6 +260,15 @@ def generate_layout_run(
         db.commit()
         return layout_run, layout_records
 
+    mock_candidates = mock_generate(
+        site_width=requirements.site_width,
+        site_height=requirements.site_height,
+        buildings=buildings,
+        top_k=payload.top_k,
+    )
+
+    _validate_candidate_buildings(mock_candidates, project_building_ids)
+
     layout_run = LayoutRun(
         project_id=project.id,
         algorithm=payload.algorithm,
@@ -225,13 +280,6 @@ def generate_layout_run(
     db.add(layout_run)
     db.commit()
     db.refresh(layout_run)
-
-    mock_candidates = mock_generate(
-        site_width=requirements.site_width,
-        site_height=requirements.site_height,
-        buildings=buildings,
-        top_k=payload.top_k,
-    )
 
     layout_records: list[Layout] = []
     for item in mock_candidates:

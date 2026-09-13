@@ -17,7 +17,17 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class BaseContract(BaseModel):
-    model_config = ConfigDict(populate_by_name=True, from_attributes=True)
+    model_config = ConfigDict(
+        populate_by_name=True,
+        from_attributes=True,
+        extra="forbid",
+    )
+
+
+class CampusGraphContract(BaseContract):
+    node_features: list[list[float]] = Field(..., alias="nodeFeatures")
+    edge_index: list[list[int]] = Field(..., alias="edgeIndex")
+    edge_features: list[list[float]] = Field(..., alias="edgeFeatures")
 
 
 class CandidateBuildingContract(BaseContract):
@@ -68,6 +78,18 @@ def invoke_p1_build_graph(campus_data: dict[str, Any]) -> Any:
         campus_graph = build_graph(campus_data)
         if campus_graph is None:
             raise ValueError("build_graph returned None")
+
+        # Validate P1 output against Contract 5 (CampusGraphContract)
+        if hasattr(campus_graph, "model_dump"):
+            graph_data = campus_graph.model_dump(by_alias=True)
+        elif hasattr(campus_graph, "__dict__") and not isinstance(campus_graph, dict):
+            graph_data = vars(campus_graph)
+        elif isinstance(campus_graph, dict):
+            graph_data = campus_graph
+        else:
+            raise ValueError(f"Unsupported graph object type: {type(campus_graph)}")
+
+        CampusGraphContract.model_validate(graph_data)
         return campus_graph
     except Exception as exc:
         if isinstance(exc, HTTPException):
@@ -125,8 +147,10 @@ def invoke_p3_optimize_layouts(
 
     try:
         ranked = optimize_layouts(candidates, requirements, constraints, top_k)
-        if not isinstance(ranked, list) or len(ranked) == 0:
-            raise ValueError("optimize_layouts returned invalid or empty ranked layouts")
+        if not isinstance(ranked, list) or len(ranked) != top_k:
+            raise ValueError(
+                f"optimize_layouts must return exactly {top_k} ranked layouts, got {len(ranked) if isinstance(ranked, list) else type(ranked)}"
+            )
         return ranked
     except Exception as exc:
         if isinstance(exc, HTTPException):

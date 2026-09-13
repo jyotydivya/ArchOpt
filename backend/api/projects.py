@@ -105,6 +105,7 @@ def create_requirements(
         # update existing requirement record
         requirement.site_width = payload.site_width
         requirement.site_height = payload.site_height
+        requirement.total_area = payload.site_width * payload.site_height
         requirement.min_green_percent = payload.min_green_percent
         requirement.min_parking_percent = payload.min_parking_percent
         requirement.min_road_width = payload.min_road_width
@@ -118,6 +119,7 @@ def create_requirements(
             project_id=project.id,
             site_width=payload.site_width,
             site_height=payload.site_height,
+            total_area=payload.site_width * payload.site_height,
             min_green_percent=payload.min_green_percent,
             min_parking_percent=payload.min_parking_percent,
             min_road_width=payload.min_road_width,

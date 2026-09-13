@@ -34,12 +34,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -75,12 +75,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -116,12 +116,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -168,12 +168,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -223,12 +223,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -261,12 +261,12 @@
           "204": {
             "description": "Successful Response"
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -318,12 +318,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -363,12 +363,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -420,12 +420,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -465,12 +465,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -522,12 +522,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -567,12 +567,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -628,12 +628,22 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Generation Failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationFailedResponse"
                 }
               }
             }
@@ -675,12 +685,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -722,12 +732,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -787,12 +797,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -834,12 +844,12 @@
               }
             }
           },
-          "422": {
+          "400": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
                 }
               }
             }
@@ -915,6 +925,7 @@
             "title": "Floorcount"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "id",
@@ -973,6 +984,7 @@
             "title": "Entrances"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "projectId",
@@ -1017,6 +1029,7 @@
             "default": 1
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "name",
@@ -1039,6 +1052,7 @@
             "title": "Buildings"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "buildings"
@@ -1089,6 +1103,7 @@
             "default": 1
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "id",
@@ -1102,6 +1117,35 @@
           "floorCount"
         ],
         "title": "BuildingResponse"
+      },
+      "CandidateBuildingPosition": {
+        "properties": {
+          "buildingId": {
+            "type": "integer",
+            "title": "Buildingid"
+          },
+          "x": {
+            "type": "number",
+            "title": "X"
+          },
+          "y": {
+            "type": "number",
+            "title": "Y"
+          },
+          "rotation": {
+            "type": "number",
+            "title": "Rotation",
+            "default": 0.0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "buildingId",
+          "x",
+          "y"
+        ],
+        "title": "CandidateBuildingPosition"
       },
       "ConstraintCreateRequest": {
         "properties": {
@@ -1165,6 +1209,7 @@
             "title": "Priority"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "type"
@@ -1181,6 +1226,7 @@
             "title": "Constraints"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "constraints"
@@ -1253,6 +1299,7 @@
             "title": "Priority"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "id",
@@ -1275,6 +1322,7 @@
             "title": "Width"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "x",
@@ -1282,19 +1330,6 @@
           "width"
         ],
         "title": "EntranceSchema"
-      },
-      "HTTPValidationError": {
-        "properties": {
-          "detail": {
-            "items": {
-              "$ref": "#/components/schemas/ValidationError"
-            },
-            "type": "array",
-            "title": "Detail"
-          }
-        },
-        "type": "object",
-        "title": "HTTPValidationError"
       },
       "LayoutDetailResponse": {
         "properties": {
@@ -1315,7 +1350,9 @@
             "$ref": "#/components/schemas/SiteDimensionSchema"
           },
           "buildings": {
-            "items": {},
+            "items": {
+              "$ref": "#/components/schemas/CandidateBuildingPosition"
+            },
             "type": "array",
             "title": "Buildings"
           },
@@ -1347,6 +1384,7 @@
             "title": "Metrics"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "id",
@@ -1365,6 +1403,7 @@
             "title": "Layouts"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "layouts"
@@ -1402,6 +1441,7 @@
             "default": 1.0
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "landUtilization",
@@ -1427,6 +1467,7 @@
             "default": "GNN_NSGA2"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "title": "LayoutRunCreateRequest"
       },
@@ -1446,6 +1487,7 @@
             "title": "Layoutcount"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "runId",
@@ -1469,6 +1511,7 @@
             "default": "SELECTED"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "projectId",
@@ -1495,6 +1538,7 @@
             "$ref": "#/components/schemas/LayoutMetricsSchema"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "id",
@@ -1521,6 +1565,7 @@
             "title": "Description"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "name"
@@ -1554,6 +1599,7 @@
             "default": "DRAFT"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "id",
@@ -1579,6 +1625,7 @@
             "title": "Description"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "name"
@@ -1634,6 +1681,7 @@
             "title": "Entrances"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "projectId",
@@ -1680,6 +1728,7 @@
             "title": "Entrances"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "siteWidth",
@@ -1702,6 +1751,7 @@
             "title": "Height"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "width",
@@ -1725,6 +1775,7 @@
             "default": "PROJECT_MANAGER"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "id",
@@ -1743,6 +1794,7 @@
             "title": "Password"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "email",
@@ -1765,6 +1817,7 @@
             "$ref": "#/components/schemas/UserAuthSummary"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "accessToken",
@@ -1787,6 +1840,7 @@
             "title": "Password"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "name",
@@ -1815,6 +1869,7 @@
             "default": "PROJECT_MANAGER"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "id",
@@ -1823,45 +1878,33 @@
         ],
         "title": "UserRegisterResponse"
       },
-      "ValidationError": {
+      "ValidationErrorResponse": {
+        "title": "ValidationErrorResponse",
+        "type": "object",
         "properties": {
-          "loc": {
-            "items": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "integer"
-                }
-              ]
-            },
-            "type": "array",
-            "title": "Location"
-          },
-          "msg": {
+          "detail": {
+            "title": "Detail",
             "type": "string",
-            "title": "Message"
-          },
-          "type": {
-            "type": "string",
-            "title": "Error Type"
-          },
-          "input": {
-            "title": "Input"
-          },
-          "ctx": {
-            "type": "object",
-            "title": "Context"
+            "example": "VALIDATION_ERROR"
           }
         },
-        "type": "object",
         "required": [
-          "loc",
-          "msg",
-          "type"
-        ],
-        "title": "ValidationError"
+          "detail"
+        ]
+      },
+      "GenerationFailedResponse": {
+        "title": "GenerationFailedResponse",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "string",
+            "example": "GENERATION_FAILED"
+          }
+        },
+        "required": [
+          "detail"
+        ]
       }
     },
     "securitySchemes": {

@@ -1,11 +1,8 @@
 from typing import List, Any
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import Field
+from backend.schemas.base import BaseSchema
 from backend.schemas.requirement import EntranceSchema
 from backend.schemas.layout import SiteDimensionSchema
-
-
-class BaseSchema(BaseModel):
-    model_config = ConfigDict(populate_by_name=True, from_attributes=True)
 
 
 class BlueprintBuildingSchema(BaseSchema):
