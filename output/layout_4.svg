@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="620" viewBox="0 0 760 620" font-family="Inter,system-ui,sans-serif">
+<defs>
+  <pattern id="hatch-parking" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="8" stroke="#475569" stroke-width="2" opacity="0.5"/>
+  </pattern>
+  <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+    <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.18"/>
+  </filter>
+</defs>
+<rect width="760" height="620" fill="#0F172A"/>
+<rect x="30" y="30" width="500.0" height="500.0" fill="#16A34A" opacity="0.22" rx="4"/>
+<rect x="30" y="30" width="500.0" height="500.0" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="6,3" rx="4"/>
+<line x1="30.0" y1="30" x2="30.0" y2="530.0" stroke="#1E293B" stroke-width="0.5"/>
+<line x1="113.3" y1="30" x2="113.3" y2="530.0" stroke="#1E293B" stroke-width="0.5"/>
+<text x="113.3" y="26" text-anchor="middle" font-size="8" fill="#475569">50m</text>
+<line x1="196.7" y1="30" x2="196.7" y2="530.0" stroke="#1E293B" stroke-width="0.5"/>
+<text x="196.7" y="26" text-anchor="middle" font-size="8" fill="#475569">100m</text>
+<line x1="280.0" y1="30" x2="280.0" y2="530.0" stroke="#1E293B" stroke-width="0.5"/>
+<text x="280.0" y="26" text-anchor="middle" font-size="8" fill="#475569">150m</text>
+<line x1="363.3" y1="30" x2="363.3" y2="530.0" stroke="#1E293B" stroke-width="0.5"/>
+<text x="363.3" y="26" text-anchor="middle" font-size="8" fill="#475569">200m</text>
+<line x1="446.7" y1="30" x2="446.7" y2="530.0" stroke="#1E293B" stroke-width="0.5"/>
+<text x="446.7" y="26" text-anchor="middle" font-size="8" fill="#475569">250m</text>
+<line x1="530.0" y1="30" x2="530.0" y2="530.0" stroke="#1E293B" stroke-width="0.5"/>
+<text x="530.0" y="26" text-anchor="middle" font-size="8" fill="#475569">300m</text>
+<line x1="30" y1="30.0" x2="530.0" y2="30.0" stroke="#1E293B" stroke-width="0.5"/>
+<text x="26" y="33.0" text-anchor="end" font-size="8" fill="#475569">300m</text>
+<line x1="30" y1="113.3" x2="530.0" y2="113.3" stroke="#1E293B" stroke-width="0.5"/>
+<text x="26" y="116.3" text-anchor="end" font-size="8" fill="#475569">250m</text>
+<line x1="30" y1="196.7" x2="530.0" y2="196.7" stroke="#1E293B" stroke-width="0.5"/>
+<text x="26" y="199.7" text-anchor="end" font-size="8" fill="#475569">200m</text>
+<line x1="30" y1="280.0" x2="530.0" y2="280.0" stroke="#1E293B" stroke-width="0.5"/>
+<text x="26" y="283.0" text-anchor="end" font-size="8" fill="#475569">150m</text>
+<line x1="30" y1="363.3" x2="530.0" y2="363.3" stroke="#1E293B" stroke-width="0.5"/>
+<text x="26" y="366.3" text-anchor="end" font-size="8" fill="#475569">100m</text>
+<line x1="30" y1="446.7" x2="530.0" y2="446.7" stroke="#1E293B" stroke-width="0.5"/>
+<text x="26" y="449.7" text-anchor="end" font-size="8" fill="#475569">50m</text>
+<line x1="30" y1="530.0" x2="530.0" y2="530.0" stroke="#1E293B" stroke-width="0.5"/>
+<g transform="translate(96.7,171.7) rotate(-0.0)"><rect x="-50.0" y="-33.3" width="100.0" height="66.7" fill="#3B82F6" stroke="#1D4ED8" stroke-width="1.5" opacity="0.85" stroke-dasharray="4,3" rx="2"/><text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="Inter,sans-serif" fill="white" font-weight="600" style="pointer-events:none;">Academic Blo</text></g>
+<g transform="translate(96.7,171.7) rotate(-0.0)"><rect x="-52.0" y="-35.3" width="104.0" height="70.7" fill="none" stroke="#EF4444" stroke-width="2" stroke-dasharray="4,2" opacity="0.9" rx="3"/></g>
+<g transform="translate(205.0,180.0) rotate(-0.0)"><rect x="-50.0" y="-33.3" width="100.0" height="66.7" fill="#3B82F6" stroke="#1D4ED8" stroke-width="1.5" opacity="0.85" stroke-dasharray="4,3" rx="2"/><text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="Inter,sans-serif" fill="white" font-weight="600" style="pointer-events:none;">Academic Blo</text></g>
+<g transform="translate(205.0,180.0) rotate(-0.0)"><rect x="-52.0" y="-35.3" width="104.0" height="70.7" fill="none" stroke="#EF4444" stroke-width="2" stroke-dasharray="4,2" opacity="0.9" rx="3"/></g>
+<g transform="translate(71.7,209.2) rotate(-0.0)"><rect x="-25.0" y="-20.8" width="50.0" height="41.7" fill="#3B82F6" stroke="#1D4ED8" stroke-width="1.5" opacity="0.85" stroke-dasharray="4,3" rx="2"/><text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="Inter,sans-serif" fill="white" font-weight="600" style="pointer-events:none;">Library</text></g>
+<g transform="translate(71.7,209.2) rotate(-0.0)"><rect x="-27.0" y="-22.8" width="54.0" height="45.7" fill="none" stroke="#EF4444" stroke-width="2" stroke-dasharray="4,2" opacity="0.9" rx="3"/></g>
+<g transform="translate(363.3,121.7) rotate(-0.0)"><rect x="-33.3" y="-25.0" width="66.7" height="50.0" fill="#8B5CF6" stroke="#6D28D9" stroke-width="1.5" opacity="0.85" stroke-dasharray="4,3" rx="2"/><text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="7" font-family="Inter,sans-serif" fill="white" font-weight="600" style="pointer-events:none;">Administrati</text></g>
+<g transform="translate(363.3,121.7) rotate(-0.0)"><rect x="-35.3" y="-27.0" width="70.7" height="54.0" fill="none" stroke="#EF4444" stroke-width="2" stroke-dasharray="4,2" opacity="0.9" rx="3"/></g>
+<g transform="translate(171.7,371.7) rotate(-90.0)"><rect x="-25.0" y="-41.7" width="50.0" height="83.3" fill="#F97316" stroke="#C2410C" stroke-width="1.5" opacity="0.85" stroke-dasharray="4,3" rx="2"/><text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="8" font-family="Inter,sans-serif" fill="white" font-weight="600" style="pointer-events:none;">Hostel A</text></g>
+<g transform="translate(171.7,371.7) rotate(-90.0)"><rect x="-27.0" y="-43.7" width="54.0" height="87.3" fill="none" stroke="#EF4444" stroke-width="2" stroke-dasharray="4,2" opacity="0.9" rx="3"/></g>
+<g transform="translate(246.7,438.3) rotate(-0.0)"><rect x="-41.7" y="-25.0" width="83.3" height="50.0" fill="#F97316" stroke="#C2410C" stroke-width="1.5" opacity="0.85" stroke-dasharray="4,3" rx="2"/><text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="Inter,sans-serif" fill="white" font-weight="600" style="pointer-events:none;">Hostel B</text></g>
+<g transform="translate(246.7,438.3) rotate(-0.0)"><rect x="-43.7" y="-27.0" width="87.3" height="54.0" fill="none" stroke="#EF4444" stroke-width="2" stroke-dasharray="4,2" opacity="0.9" rx="3"/></g>
+<g transform="translate(230.0,413.3) rotate(-90.0)"><rect x="-25.0" y="-41.7" width="50.0" height="83.3" fill="#F97316" stroke="#C2410C" stroke-width="1.5" opacity="0.85" stroke-dasharray="4,3" rx="2"/><text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="8" font-family="Inter,sans-serif" fill="white" font-weight="600" style="pointer-events:none;">Hostel C</text></g>
+<g transform="translate(230.0,413.3) rotate(-90.0)"><rect x="-27.0" y="-43.7" width="54.0" height="87.3" fill="none" stroke="#EF4444" stroke-width="2" stroke-dasharray="4,2" opacity="0.9" rx="3"/></g>
+<g transform="translate(355.0,205.0) rotate(-0.0)"><rect x="-66.7" y="-50.0" width="133.3" height="100.0" fill="#10B981" stroke="#047857" stroke-width="1.5" opacity="0.85" stroke-dasharray="4,3" rx="2"/><text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="Inter,sans-serif" fill="white" font-weight="600" style="pointer-events:none;">Sports Compl</text></g>
+<g transform="translate(355.0,205.0) rotate(-0.0)"><rect x="-68.7" y="-52.0" width="137.3" height="104.0" fill="none" stroke="#EF4444" stroke-width="2" stroke-dasharray="4,2" opacity="0.9" rx="3"/></g>
+<g transform="translate(430.0,488.3) rotate(-0.0)"><rect x="-33.3" y="-25.0" width="66.7" height="50.0" fill="url(#hatch-parking)" stroke="#475569" stroke-width="1.5" opacity="0.85"  rx="2"/><text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="7" font-family="Inter,sans-serif" fill="white" font-weight="600" style="pointer-events:none;">Parking Area</text></g>
+<polygon points="281.7,516.0 273.7,530.0 289.7,530.0" fill="#F87171" opacity="0.9"/>
+<text x="281.7" y="540.0" text-anchor="middle" font-size="8" fill="#F87171">ENT</text>
+<polygon points="38.3,274.3 30.3,288.3 46.3,288.3" fill="#F87171" opacity="0.9"/>
+<text x="38.3" y="298.3" text-anchor="middle" font-size="8" fill="#F87171">ENT</text>
+<rect x="565" y="25" width="195" height="535" fill="#1E293B" rx="8" opacity="0.95"/>
+<circle cx="590" cy="50" r="18" fill="#64748B" opacity="0.9"/><text x="590" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="white">#4</text>
+<text x="615" y="46" font-size="10" font-weight="600" fill="#EF4444">INFEASIBLE</text><text x="615" y="60" font-size="9" fill="#94A3B8">mock-0015</text>
+<text x="570" y="85" font-size="10" font-weight="600" fill="#CBD5E1">Metrics</text>
+<text x="570" y="100" font-size="9" fill="#94A3B8">Land Util</text><text x="748" y="100" font-size="9" fill="white" text-anchor="end">0.19</text>
+<rect x="570" y="104" width="175" height="8" fill="#334155" rx="4"/>
+<rect x="570" y="104" width="32" height="8" fill="#3B82F6" rx="4" opacity="0.85"/>
+<text x="570" y="132" font-size="9" fill="#94A3B8">Green Ratio</text><text x="748" y="132" font-size="9" fill="white" text-anchor="end">0.63</text>
+<rect x="570" y="136" width="175" height="8" fill="#334155" rx="4"/>
+<rect x="570" y="136" width="106" height="8" fill="#22C55E" rx="4" opacity="0.85"/>
+<text x="570" y="164" font-size="9" fill="#94A3B8">Parking</text><text x="748" y="164" font-size="9" fill="white" text-anchor="end">0.01</text>
+<rect x="570" y="168" width="175" height="8" fill="#334155" rx="4"/>
+<rect x="570" y="168" width="2" height="8" fill="#94A3B8" rx="4" opacity="0.85"/>
+<text x="570" y="196" font-size="9" fill="#94A3B8">Accessibility</text><text x="748" y="196" font-size="9" fill="white" text-anchor="end">0.74</text>
+<rect x="570" y="200" width="175" height="8" fill="#334155" rx="4"/>
+<rect x="570" y="200" width="126" height="8" fill="#F97316" rx="4" opacity="0.85"/>
+<text x="570" y="228" font-size="9" fill="#94A3B8">Road Effic.</text><text x="748" y="228" font-size="9" fill="white" text-anchor="end">0.87</text>
+<rect x="570" y="232" width="175" height="8" fill="#334155" rx="4"/>
+<rect x="570" y="232" width="148" height="8" fill="#A78BFA" rx="4" opacity="0.85"/>
+<text x="570" y="260" font-size="9" fill="#94A3B8">Constraints</text><text x="748" y="260" font-size="9" fill="white" text-anchor="end">0.62</text>
+<rect x="570" y="264" width="175" height="8" fill="#334155" rx="4"/>
+<rect x="570" y="264" width="106" height="8" fill="#06B6D4" rx="4" opacity="0.85"/>
+<text x="570" y="307" font-size="10" font-weight="600" fill="#CBD5E1">Zones</text>
+<rect x="570" y="313" width="10" height="10" fill="#3B82F6" rx="2"/><text x="584" y="321" font-size="9" fill="#CBD5E1">Academic</text>
+<rect x="570" y="329" width="10" height="10" fill="#F97316" rx="2"/><text x="584" y="337" font-size="9" fill="#CBD5E1">Residential</text>
+<rect x="570" y="345" width="10" height="10" fill="#8B5CF6" rx="2"/><text x="584" y="353" font-size="9" fill="#CBD5E1">Admin</text>
+<rect x="570" y="361" width="10" height="10" fill="#10B981" rx="2"/><text x="584" y="369" font-size="9" fill="#CBD5E1">Sports</text>
+<rect x="570" y="377" width="10" height="10" fill="#06B6D4" rx="2"/><text x="584" y="385" font-size="9" fill="#CBD5E1">Library</text>
+<rect x="570" y="393" width="10" height="10" fill="#94A3B8" rx="2"/><text x="584" y="401" font-size="9" fill="#CBD5E1">Parking</text>
+<text x="570" y="427" font-size="10" font-weight="600" fill="#CBD5E1">Violations</text>
+<text x="570" y="441" font-size="9" fill="#EF4444">⬛ 6 hard</text>
+<text x="30" y="594" font-size="13" font-weight="700" fill="#E2E8F0">AI Campus Planner — Rank 4 Layout</text>
+<text x="30" y="608" font-size="10" fill="#64748B">Site: 300m × 300m  |  9 buildings  |  Constraint score: 0.62</text>
+</svg>

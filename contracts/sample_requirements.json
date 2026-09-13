@@ -1,0 +1,13 @@
+{
+  "projectId": 1,
+  "siteWidth": 300,
+  "siteHeight": 300,
+  "minGreenPercent": 25,
+  "minParkingPercent": 10,
+  "minRoadWidth": 8,
+  "minBuildingGap": 10,
+  "entrances": [
+    { "x": 150, "y": 0,   "width": 12 },
+    { "x": 0,   "y": 150, "width": 10 }
+  ]
+}

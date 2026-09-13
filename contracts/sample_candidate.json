@@ -1,0 +1,15 @@
+{
+  "candidateId": "candidate-001",
+  "siteWidth": 300,
+  "siteHeight": 300,
+  "buildings": [
+    { "buildingId": 1, "x": 50,  "y": 200, "rotation": 0, "width": 60, "depth": 40, "zone": "academic",    "name": "Academic Block A", "type": "academic", "height": 18, "floorCount": 4 },
+    { "buildingId": 2, "x": 130, "y": 200, "rotation": 0, "width": 60, "depth": 40, "zone": "academic",    "name": "Academic Block B", "type": "academic", "height": 18, "floorCount": 4 },
+    { "buildingId": 3, "x": 50,  "y": 120, "rotation": 0, "width": 30, "depth": 25, "zone": "academic",    "name": "Library",          "type": "library",  "height": 12, "floorCount": 3 },
+    { "buildingId": 4, "x": 200, "y": 200, "rotation": 0, "width": 40, "depth": 30, "zone": "admin",       "name": "Administration",   "type": "admin",    "height": 12, "floorCount": 3 },
+    { "buildingId": 5, "x": 50,  "y": 30,  "rotation": 0, "width": 50, "depth": 30, "zone": "residential", "name": "Hostel A",         "type": "hostel",   "height": 15, "floorCount": 5 },
+    { "buildingId": 6, "x": 120, "y": 30,  "rotation": 0, "width": 50, "depth": 30, "zone": "residential", "name": "Hostel B",         "type": "hostel",   "height": 15, "floorCount": 5 },
+    { "buildingId": 7, "x": 190, "y": 30,  "rotation": 0, "width": 50, "depth": 30, "zone": "residential", "name": "Hostel C",         "type": "hostel",   "height": 15, "floorCount": 5 },
+    { "buildingId": 8, "x": 200, "y": 120, "rotation": 0, "width": 80, "depth": 60, "zone": "sports",      "name": "Sports Complex",   "type": "sports",   "height": 10, "floorCount": 1 }
+  ]
+}

@@ -1,0 +1,910 @@
+[
+  {
+    "candidateId": "mock-0000",
+    "rank": 1,
+    "feasible": false,
+    "siteWidth": 300.0,
+    "siteHeight": 300.0,
+    "buildings": [
+      {
+        "buildingId": 1,
+        "name": "Academic Block A",
+        "type": "academic",
+        "zone": "academic",
+        "x": 70,
+        "y": 175,
+        "width": 60.0,
+        "depth": 40.0,
+        "height": 18.0,
+        "rotation": 0.0,
+        "floorCount": 4
+      },
+      {
+        "buildingId": 2,
+        "name": "Academic Block B",
+        "type": "academic",
+        "zone": "academic",
+        "x": 75,
+        "y": 195,
+        "width": 60.0,
+        "depth": 40.0,
+        "height": 18.0,
+        "rotation": 0.0,
+        "floorCount": 4
+      },
+      {
+        "buildingId": 3,
+        "name": "Library",
+        "type": "library",
+        "zone": "academic",
+        "x": 55,
+        "y": 115,
+        "width": 30.0,
+        "depth": 25.0,
+        "height": 12.0,
+        "rotation": 0.0,
+        "floorCount": 3
+      },
+      {
+        "buildingId": 4,
+        "name": "Administration",
+        "type": "admin",
+        "zone": "admin",
+        "x": 175,
+        "y": 160,
+        "width": 40.0,
+        "depth": 30.0,
+        "height": 12.0,
+        "rotation": 0.0,
+        "floorCount": 3
+      },
+      {
+        "buildingId": 5,
+        "name": "Hostel A",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 50,
+        "y": 75,
+        "width": 50.0,
+        "depth": 30.0,
+        "height": 15.0,
+        "rotation": 0.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 6,
+        "name": "Hostel B",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 130,
+        "y": 65,
+        "width": 50.0,
+        "depth": 30.0,
+        "height": 15.0,
+        "rotation": 0.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 7,
+        "name": "Hostel C",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 160,
+        "y": 70,
+        "width": 50.0,
+        "depth": 30.0,
+        "height": 15.0,
+        "rotation": 0.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 8,
+        "name": "Sports Complex",
+        "type": "sports",
+        "zone": "sports",
+        "x": 175,
+        "y": 145,
+        "width": 80.0,
+        "depth": 60.0,
+        "height": 10.0,
+        "rotation": 0.0,
+        "floorCount": 1
+      },
+      {
+        "buildingId": 9,
+        "name": "Parking Area",
+        "type": "parking",
+        "zone": "parking",
+        "x": 170,
+        "y": 10.0,
+        "width": 40.0,
+        "depth": 30.0,
+        "height": 3.0,
+        "rotation": 0.0,
+        "floorCount": 1
+      }
+    ],
+    "metrics": {
+      "landUtilization": 0.1917,
+      "greenRatio": 0.6283,
+      "parkingRatio": 0.0133,
+      "accessibilityScore": 0.7458,
+      "roadEfficiency": 0.8869,
+      "constraintScore": 0.75
+    },
+    "violations": [
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          1,
+          2
+        ],
+        "message": "Buildings 1 ('Academic Block A') and 2 ('Academic Block B') overlap (penetration depth \u2248 20.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          4,
+          8
+        ],
+        "message": "Buildings 4 ('Administration') and 8 ('Sports Complex') overlap (penetration depth \u2248 30.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          6,
+          7
+        ],
+        "message": "Buildings 6 ('Hostel B') and 7 ('Hostel C') overlap (penetration depth \u2248 20.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "PARKING_VIOLATION",
+        "buildingIds": [],
+        "message": "Estimated parking ratio 1.3% is below the required 10.0% (10.0% of site).",
+        "severity": "hard"
+      }
+    ]
+  },
+  {
+    "candidateId": "mock-0013",
+    "rank": 2,
+    "feasible": false,
+    "siteWidth": 300.0,
+    "siteHeight": 300.0,
+    "buildings": [
+      {
+        "buildingId": 1,
+        "name": "Academic Block A",
+        "type": "academic",
+        "zone": "academic",
+        "x": 10.0,
+        "y": 185,
+        "width": 60.0,
+        "depth": 40.0,
+        "height": 18.0,
+        "rotation": 0.0,
+        "floorCount": 4
+      },
+      {
+        "buildingId": 2,
+        "name": "Academic Block B",
+        "type": "academic",
+        "zone": "academic",
+        "x": 80,
+        "y": 165,
+        "width": 40.0,
+        "depth": 60.0,
+        "height": 18.0,
+        "rotation": 90.0,
+        "floorCount": 4
+      },
+      {
+        "buildingId": 3,
+        "name": "Library",
+        "type": "library",
+        "zone": "academic",
+        "x": 25,
+        "y": 155,
+        "width": 30.0,
+        "depth": 25.0,
+        "height": 12.0,
+        "rotation": 0.0,
+        "floorCount": 3
+      },
+      {
+        "buildingId": 4,
+        "name": "Administration",
+        "type": "admin",
+        "zone": "admin",
+        "x": 250.0,
+        "y": 175,
+        "width": 40.0,
+        "depth": 30.0,
+        "height": 12.0,
+        "rotation": 0.0,
+        "floorCount": 3
+      },
+      {
+        "buildingId": 5,
+        "name": "Hostel A",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 60,
+        "y": 10.0,
+        "width": 30.0,
+        "depth": 50.0,
+        "height": 15.0,
+        "rotation": 90.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 6,
+        "name": "Hostel B",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 30,
+        "y": 60,
+        "width": 50.0,
+        "depth": 30.0,
+        "height": 15.0,
+        "rotation": 0.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 7,
+        "name": "Hostel C",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 175,
+        "y": 10.0,
+        "width": 50.0,
+        "depth": 30.0,
+        "height": 15.0,
+        "rotation": 0.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 8,
+        "name": "Sports Complex",
+        "type": "sports",
+        "zone": "sports",
+        "x": 160,
+        "y": 130,
+        "width": 80.0,
+        "depth": 60.0,
+        "height": 10.0,
+        "rotation": 0.0,
+        "floorCount": 1
+      },
+      {
+        "buildingId": 9,
+        "name": "Parking Area",
+        "type": "parking",
+        "zone": "parking",
+        "x": 165,
+        "y": 15,
+        "width": 40.0,
+        "depth": 30.0,
+        "height": 3.0,
+        "rotation": 0.0,
+        "floorCount": 1
+      }
+    ],
+    "metrics": {
+      "landUtilization": 0.1917,
+      "greenRatio": 0.6283,
+      "parkingRatio": 0.0133,
+      "accessibilityScore": 0.7695,
+      "roadEfficiency": 0.8719,
+      "constraintScore": 0.625
+    },
+    "violations": [
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          1,
+          2
+        ],
+        "message": "Buildings 1 ('Academic Block A') and 2 ('Academic Block B') overlap (penetration depth \u2248 0.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "GAP_VIOLATION",
+        "buildingIds": [
+          1,
+          3
+        ],
+        "message": "Buildings 1 ('Academic Block A') and 3 ('Library') are too close: 5.0m gap < required 10.0m.",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          7,
+          9
+        ],
+        "message": "Buildings 7 ('Hostel C') and 9 ('Parking Area') overlap (penetration depth \u2248 25.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "PARKING_VIOLATION",
+        "buildingIds": [],
+        "message": "Estimated parking ratio 1.3% is below the required 10.0% (10.0% of site).",
+        "severity": "hard"
+      },
+      {
+        "type": "ZONING_VIOLATION",
+        "buildingIds": [
+          6,
+          7
+        ],
+        "message": "Zone 'residential': buildings 6 and 7 are 153.4m apart \u2014 same-zone buildings should be within 150m of each other.",
+        "severity": "soft"
+      }
+    ]
+  },
+  {
+    "candidateId": "mock-0009",
+    "rank": 3,
+    "feasible": false,
+    "siteWidth": 300.0,
+    "siteHeight": 300.0,
+    "buildings": [
+      {
+        "buildingId": 1,
+        "name": "Academic Block A",
+        "type": "academic",
+        "zone": "academic",
+        "x": 20,
+        "y": 200,
+        "width": 60.0,
+        "depth": 40.0,
+        "height": 18.0,
+        "rotation": 0.0,
+        "floorCount": 4
+      },
+      {
+        "buildingId": 2,
+        "name": "Academic Block B",
+        "type": "academic",
+        "zone": "academic",
+        "x": 75,
+        "y": 200,
+        "width": 60.0,
+        "depth": 40.0,
+        "height": 18.0,
+        "rotation": 0.0,
+        "floorCount": 4
+      },
+      {
+        "buildingId": 3,
+        "name": "Library",
+        "type": "library",
+        "zone": "academic",
+        "x": 70,
+        "y": 150,
+        "width": 30.0,
+        "depth": 25.0,
+        "height": 12.0,
+        "rotation": 0.0,
+        "floorCount": 3
+      },
+      {
+        "buildingId": 4,
+        "name": "Administration",
+        "type": "admin",
+        "zone": "admin",
+        "x": 180,
+        "y": 160,
+        "width": 40.0,
+        "depth": 30.0,
+        "height": 12.0,
+        "rotation": 0.0,
+        "floorCount": 3
+      },
+      {
+        "buildingId": 5,
+        "name": "Hostel A",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 60,
+        "y": 10.0,
+        "width": 50.0,
+        "depth": 30.0,
+        "height": 15.0,
+        "rotation": 0.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 6,
+        "name": "Hostel B",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 110,
+        "y": 20,
+        "width": 50.0,
+        "depth": 30.0,
+        "height": 15.0,
+        "rotation": 0.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 7,
+        "name": "Hostel C",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 100,
+        "y": 15,
+        "width": 50.0,
+        "depth": 30.0,
+        "height": 15.0,
+        "rotation": 0.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 8,
+        "name": "Sports Complex",
+        "type": "sports",
+        "zone": "sports",
+        "x": 175,
+        "y": 150,
+        "width": 80.0,
+        "depth": 60.0,
+        "height": 10.0,
+        "rotation": 0.0,
+        "floorCount": 1
+      },
+      {
+        "buildingId": 9,
+        "name": "Parking Area",
+        "type": "parking",
+        "zone": "parking",
+        "x": 195,
+        "y": 65,
+        "width": 40.0,
+        "depth": 30.0,
+        "height": 3.0,
+        "rotation": 0.0,
+        "floorCount": 1
+      }
+    ],
+    "metrics": {
+      "landUtilization": 0.1917,
+      "greenRatio": 0.6283,
+      "parkingRatio": 0.0133,
+      "accessibilityScore": 0.7595,
+      "roadEfficiency": 0.8722,
+      "constraintScore": 0.75
+    },
+    "violations": [
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          1,
+          2
+        ],
+        "message": "Buildings 1 ('Academic Block A') and 2 ('Academic Block B') overlap (penetration depth \u2248 5.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          4,
+          8
+        ],
+        "message": "Buildings 4 ('Administration') and 8 ('Sports Complex') overlap (penetration depth \u2248 30.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          5,
+          6
+        ],
+        "message": "Buildings 5 ('Hostel A') and 6 ('Hostel B') overlap (penetration depth \u2248 0.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          5,
+          7
+        ],
+        "message": "Buildings 5 ('Hostel A') and 7 ('Hostel C') overlap (penetration depth \u2248 10.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          6,
+          7
+        ],
+        "message": "Buildings 6 ('Hostel B') and 7 ('Hostel C') overlap (penetration depth \u2248 25.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "PARKING_VIOLATION",
+        "buildingIds": [],
+        "message": "Estimated parking ratio 1.3% is below the required 10.0% (10.0% of site).",
+        "severity": "hard"
+      }
+    ]
+  },
+  {
+    "candidateId": "mock-0015",
+    "rank": 4,
+    "feasible": false,
+    "siteWidth": 300.0,
+    "siteHeight": 300.0,
+    "buildings": [
+      {
+        "buildingId": 1,
+        "name": "Academic Block A",
+        "type": "academic",
+        "zone": "academic",
+        "x": 10.0,
+        "y": 195,
+        "width": 60.0,
+        "depth": 40.0,
+        "height": 18.0,
+        "rotation": 0.0,
+        "floorCount": 4
+      },
+      {
+        "buildingId": 2,
+        "name": "Academic Block B",
+        "type": "academic",
+        "zone": "academic",
+        "x": 75,
+        "y": 190,
+        "width": 60.0,
+        "depth": 40.0,
+        "height": 18.0,
+        "rotation": 0.0,
+        "floorCount": 4
+      },
+      {
+        "buildingId": 3,
+        "name": "Library",
+        "type": "library",
+        "zone": "academic",
+        "x": 10.0,
+        "y": 180,
+        "width": 30.0,
+        "depth": 25.0,
+        "height": 12.0,
+        "rotation": 0.0,
+        "floorCount": 3
+      },
+      {
+        "buildingId": 4,
+        "name": "Administration",
+        "type": "admin",
+        "zone": "admin",
+        "x": 180,
+        "y": 230,
+        "width": 40.0,
+        "depth": 30.0,
+        "height": 12.0,
+        "rotation": 0.0,
+        "floorCount": 3
+      },
+      {
+        "buildingId": 5,
+        "name": "Hostel A",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 70,
+        "y": 70,
+        "width": 30.0,
+        "depth": 50.0,
+        "height": 15.0,
+        "rotation": 90.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 6,
+        "name": "Hostel B",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 105,
+        "y": 40,
+        "width": 50.0,
+        "depth": 30.0,
+        "height": 15.0,
+        "rotation": 0.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 7,
+        "name": "Hostel C",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 105,
+        "y": 45,
+        "width": 30.0,
+        "depth": 50.0,
+        "height": 15.0,
+        "rotation": 90.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 8,
+        "name": "Sports Complex",
+        "type": "sports",
+        "zone": "sports",
+        "x": 155,
+        "y": 165,
+        "width": 80.0,
+        "depth": 60.0,
+        "height": 10.0,
+        "rotation": 0.0,
+        "floorCount": 1
+      },
+      {
+        "buildingId": 9,
+        "name": "Parking Area",
+        "type": "parking",
+        "zone": "parking",
+        "x": 220,
+        "y": 10.0,
+        "width": 40.0,
+        "depth": 30.0,
+        "height": 3.0,
+        "rotation": 0.0,
+        "floorCount": 1
+      }
+    ],
+    "metrics": {
+      "landUtilization": 0.1917,
+      "greenRatio": 0.6283,
+      "parkingRatio": 0.0133,
+      "accessibilityScore": 0.7415,
+      "roadEfficiency": 0.8732,
+      "constraintScore": 0.625
+    },
+    "violations": [
+      {
+        "type": "GAP_VIOLATION",
+        "buildingIds": [
+          1,
+          2
+        ],
+        "message": "Buildings 1 ('Academic Block A') and 2 ('Academic Block B') are too close: 5.0m gap < required 10.0m.",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          1,
+          3
+        ],
+        "message": "Buildings 1 ('Academic Block A') and 3 ('Library') overlap (penetration depth \u2248 10.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "GAP_VIOLATION",
+        "buildingIds": [
+          4,
+          8
+        ],
+        "message": "Buildings 4 ('Administration') and 8 ('Sports Complex') are too close: 5.0m gap < required 10.0m.",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          5,
+          7
+        ],
+        "message": "Buildings 5 ('Hostel A') and 7 ('Hostel C') overlap (penetration depth \u2248 5.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          6,
+          7
+        ],
+        "message": "Buildings 6 ('Hostel B') and 7 ('Hostel C') overlap (penetration depth \u2248 15.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "PARKING_VIOLATION",
+        "buildingIds": [],
+        "message": "Estimated parking ratio 1.3% is below the required 10.0% (10.0% of site).",
+        "severity": "hard"
+      }
+    ]
+  },
+  {
+    "candidateId": "mock-0064",
+    "rank": 5,
+    "feasible": false,
+    "siteWidth": 300.0,
+    "siteHeight": 300.0,
+    "buildings": [
+      {
+        "buildingId": 1,
+        "name": "Academic Block A",
+        "type": "academic",
+        "zone": "academic",
+        "x": 10.0,
+        "y": 175,
+        "width": 40.0,
+        "depth": 60.0,
+        "height": 18.0,
+        "rotation": 90.0,
+        "floorCount": 4
+      },
+      {
+        "buildingId": 2,
+        "name": "Academic Block B",
+        "type": "academic",
+        "zone": "academic",
+        "x": 135,
+        "y": 225,
+        "width": 60.0,
+        "depth": 40.0,
+        "height": 18.0,
+        "rotation": 0.0,
+        "floorCount": 4
+      },
+      {
+        "buildingId": 3,
+        "name": "Library",
+        "type": "library",
+        "zone": "academic",
+        "x": 20,
+        "y": 195,
+        "width": 30.0,
+        "depth": 25.0,
+        "height": 12.0,
+        "rotation": 0.0,
+        "floorCount": 3
+      },
+      {
+        "buildingId": 4,
+        "name": "Administration",
+        "type": "admin",
+        "zone": "admin",
+        "x": 200,
+        "y": 185,
+        "width": 40.0,
+        "depth": 30.0,
+        "height": 12.0,
+        "rotation": 0.0,
+        "floorCount": 3
+      },
+      {
+        "buildingId": 5,
+        "name": "Hostel A",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 50,
+        "y": 50,
+        "width": 50.0,
+        "depth": 30.0,
+        "height": 15.0,
+        "rotation": 0.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 6,
+        "name": "Hostel B",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 75,
+        "y": 55,
+        "width": 30.0,
+        "depth": 50.0,
+        "height": 15.0,
+        "rotation": 90.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 7,
+        "name": "Hostel C",
+        "type": "hostel",
+        "zone": "residential",
+        "x": 170,
+        "y": 50,
+        "width": 50.0,
+        "depth": 30.0,
+        "height": 15.0,
+        "rotation": 0.0,
+        "floorCount": 5
+      },
+      {
+        "buildingId": 8,
+        "name": "Sports Complex",
+        "type": "sports",
+        "zone": "sports",
+        "x": 180,
+        "y": 170,
+        "width": 80.0,
+        "depth": 60.0,
+        "height": 10.0,
+        "rotation": 0.0,
+        "floorCount": 1
+      },
+      {
+        "buildingId": 9,
+        "name": "Parking Area",
+        "type": "parking",
+        "zone": "parking",
+        "x": 155,
+        "y": 15,
+        "width": 40.0,
+        "depth": 30.0,
+        "height": 3.0,
+        "rotation": 0.0,
+        "floorCount": 1
+      }
+    ],
+    "metrics": {
+      "landUtilization": 0.1917,
+      "greenRatio": 0.6283,
+      "parkingRatio": 0.0133,
+      "accessibilityScore": 0.7214,
+      "roadEfficiency": 0.8753,
+      "constraintScore": 0.625
+    },
+    "violations": [
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          1,
+          3
+        ],
+        "message": "Buildings 1 ('Academic Block A') and 3 ('Library') overlap (penetration depth \u2248 25.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          2,
+          8
+        ],
+        "message": "Buildings 2 ('Academic Block B') and 8 ('Sports Complex') overlap (penetration depth \u2248 5.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          4,
+          8
+        ],
+        "message": "Buildings 4 ('Administration') and 8 ('Sports Complex') overlap (penetration depth \u2248 30.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "OVERLAP_VIOLATION",
+        "buildingIds": [
+          5,
+          6
+        ],
+        "message": "Buildings 5 ('Hostel A') and 6 ('Hostel B') overlap (penetration depth \u2248 15.0m).",
+        "severity": "hard"
+      },
+      {
+        "type": "GAP_VIOLATION",
+        "buildingIds": [
+          7,
+          9
+        ],
+        "message": "Buildings 7 ('Hostel C') and 9 ('Parking Area') are too close: 5.0m gap < required 10.0m.",
+        "severity": "hard"
+      },
+      {
+        "type": "PARKING_VIOLATION",
+        "buildingIds": [],
+        "message": "Estimated parking ratio 1.3% is below the required 10.0% (10.0% of site).",
+        "severity": "hard"
+      }
+    ]
+  }
+]
