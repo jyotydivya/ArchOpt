@@ -1,0 +1,176 @@
+[
+  {
+    "id": 101,
+    "rank": 1,
+    "feasible": true,
+    "site": { "width": 300, "height": 300 },
+    "buildings": [
+      { "buildingId": 1, "x": 45.0, "y": 180.0, "rotation": 0 },
+      { "buildingId": 2, "x": 135.0, "y": 180.0, "rotation": 0 },
+      { "buildingId": 3, "x": 50.0, "y": 100.0, "rotation": 0 },
+      { "buildingId": 4, "x": 210.0, "y": 180.0, "rotation": 0 },
+      { "buildingId": 5, "x": 45.0, "y": 25.0, "rotation": 0 },
+      { "buildingId": 6, "x": 120.0, "y": 25.0, "rotation": 0 },
+      { "buildingId": 7, "x": 195.0, "y": 25.0, "rotation": 0 },
+      { "buildingId": 8, "x": 190.0, "y": 95.0, "rotation": 0 }
+    ],
+    "roads": [
+      { "x": 0, "y": 150, "width": 10, "length": 300, "rotation": 0 },
+      { "x": 150, "y": 0, "width": 10, "length": 300, "rotation": 90 }
+    ],
+    "greenAreas": [
+      { "x": 110, "y": 95, "width": 60, "height": 50 }
+    ],
+    "parkingAreas": [
+      { "x": 10, "y": 10, "width": 30, "height": 40 },
+      { "x": 255, "y": 10, "width": 35, "height": 40 }
+    ],
+    "entrances": [
+      { "x": 150, "y": 0, "width": 12 },
+      { "x": 0, "y": 150, "width": 10 }
+    ],
+    "metrics": {
+      "landUtilization": 0.72,
+      "greenRatio": 0.25,
+      "parkingRatio": 0.12,
+      "accessibilityScore": 0.86,
+      "roadEfficiency": 0.81,
+      "constraintScore": 1.0
+    }
+  },
+  {
+    "id": 102,
+    "rank": 2,
+    "feasible": true,
+    "site": { "width": 300, "height": 300 },
+    "buildings": [
+      { "buildingId": 1, "x": 55.0, "y": 185.0, "rotation": 0 },
+      { "buildingId": 2, "x": 140.0, "y": 185.0, "rotation": 0 },
+      { "buildingId": 3, "x": 55.0, "y": 110.0, "rotation": 0 },
+      { "buildingId": 4, "x": 215.0, "y": 185.0, "rotation": 0 },
+      { "buildingId": 5, "x": 50.0, "y": 30.0, "rotation": 0 },
+      { "buildingId": 6, "x": 125.0, "y": 30.0, "rotation": 0 },
+      { "buildingId": 7, "x": 200.0, "y": 30.0, "rotation": 0 },
+      { "buildingId": 8, "x": 195.0, "y": 105.0, "rotation": 0 }
+    ],
+    "roads": [
+      { "x": 0, "y": 150, "width": 10, "length": 300, "rotation": 0 },
+      { "x": 150, "y": 0, "width": 10, "length": 300, "rotation": 90 }
+    ],
+    "greenAreas": [
+      { "x": 115, "y": 100, "width": 65, "height": 45 }
+    ],
+    "parkingAreas": [
+      { "x": 10, "y": 10, "width": 30, "height": 40 }
+    ],
+    "entrances": [
+      { "x": 150, "y": 0, "width": 12 },
+      { "x": 0, "y": 150, "width": 10 }
+    ],
+    "metrics": {
+      "landUtilization": 0.74,
+      "greenRatio": 0.23,
+      "parkingRatio": 0.11,
+      "accessibilityScore": 0.83,
+      "roadEfficiency": 0.79,
+      "constraintScore": 1.0
+    }
+  },
+  {
+    "id": 103,
+    "rank": 3,
+    "feasible": true,
+    "site": { "width": 300, "height": 300 },
+    "buildings": [
+      { "buildingId": 1, "x": 40.0, "y": 175.0, "rotation": 0 },
+      { "buildingId": 2, "x": 130.0, "y": 175.0, "rotation": 0 },
+      { "buildingId": 3, "x": 45.0, "y": 95.0, "rotation": 0 },
+      { "buildingId": 4, "x": 205.0, "y": 175.0, "rotation": 0 },
+      { "buildingId": 5, "x": 40.0, "y": 20.0, "rotation": 0 },
+      { "buildingId": 6, "x": 115.0, "y": 20.0, "rotation": 0 },
+      { "buildingId": 7, "x": 190.0, "y": 20.0, "rotation": 0 },
+      { "buildingId": 8, "x": 185.0, "y": 90.0, "rotation": 0 }
+    ],
+    "roads": [
+      { "x": 0, "y": 150, "width": 10, "length": 300, "rotation": 0 }
+    ],
+    "greenAreas": [
+      { "x": 100, "y": 90, "width": 70, "height": 55 }
+    ],
+    "parkingAreas": [
+      { "x": 15, "y": 15, "width": 35, "height": 35 }
+    ],
+    "entrances": [
+      { "x": 150, "y": 0, "width": 12 },
+      { "x": 0, "y": 150, "width": 10 }
+    ],
+    "metrics": {
+      "landUtilization": 0.69,
+      "greenRatio": 0.27,
+      "parkingRatio": 0.13,
+      "accessibilityScore": 0.80,
+      "roadEfficiency": 0.76,
+      "constraintScore": 1.0
+    }
+  },
+  {
+    "id": 104,
+    "rank": 4,
+    "feasible": true,
+    "site": { "width": 300, "height": 300 },
+    "buildings": [
+      { "buildingId": 1, "x": 50.0, "y": 170.0, "rotation": 0 },
+      { "buildingId": 2, "x": 135.0, "y": 170.0, "rotation": 0 },
+      { "buildingId": 3, "x": 50.0, "y": 90.0, "rotation": 0 },
+      { "buildingId": 4, "x": 210.0, "y": 170.0, "rotation": 0 },
+      { "buildingId": 5, "x": 45.0, "y": 15.0, "rotation": 0 },
+      { "buildingId": 6, "x": 120.0, "y": 15.0, "rotation": 0 },
+      { "buildingId": 7, "x": 195.0, "y": 15.0, "rotation": 0 },
+      { "buildingId": 8, "x": 190.0, "y": 85.0, "rotation": 0 }
+    ],
+    "roads": [],
+    "greenAreas": [],
+    "parkingAreas": [],
+    "entrances": [
+      { "x": 150, "y": 0, "width": 12 }
+    ],
+    "metrics": {
+      "landUtilization": 0.68,
+      "greenRatio": 0.22,
+      "parkingRatio": 0.10,
+      "accessibilityScore": 0.77,
+      "roadEfficiency": 0.73,
+      "constraintScore": 0.95
+    }
+  },
+  {
+    "id": 105,
+    "rank": 5,
+    "feasible": false,
+    "site": { "width": 300, "height": 300 },
+    "buildings": [
+      { "buildingId": 1, "x": 30.0, "y": 190.0, "rotation": 15 },
+      { "buildingId": 2, "x": 120.0, "y": 190.0, "rotation": 0 },
+      { "buildingId": 3, "x": 30.0, "y": 120.0, "rotation": 0 },
+      { "buildingId": 4, "x": 220.0, "y": 190.0, "rotation": 0 },
+      { "buildingId": 5, "x": 30.0, "y": 10.0, "rotation": 0 },
+      { "buildingId": 6, "x": 100.0, "y": 10.0, "rotation": 0 },
+      { "buildingId": 7, "x": 170.0, "y": 10.0, "rotation": 0 },
+      { "buildingId": 8, "x": 180.0, "y": 100.0, "rotation": 0 }
+    ],
+    "roads": [],
+    "greenAreas": [],
+    "parkingAreas": [],
+    "entrances": [
+      { "x": 150, "y": 0, "width": 12 }
+    ],
+    "metrics": {
+      "landUtilization": 0.65,
+      "greenRatio": 0.19,
+      "parkingRatio": 0.08,
+      "accessibilityScore": 0.72,
+      "roadEfficiency": 0.68,
+      "constraintScore": 0.82
+    }
+  }
+]
