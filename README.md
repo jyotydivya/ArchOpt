@@ -101,6 +101,30 @@ start output\comparison.html
 pytest optimization/tests/ -v
 ```
 
+### Person 5 — Frontend 2D Planning UI
+
+```bash
+# Navigate to frontend and install dependencies
+cd frontend
+npm install
+
+# Start Vite development server
+npm run dev
+# Open http://localhost:5173
+```
+
+### Person 6 — Blender 3D Automation (Standalone)
+
+```bash
+# Run Blender procedural campus generator (Headless)
+blender -b -P blender/generator.py -- --input blender/input/sample_blueprint.json
+
+# Outputs generated in blender/output/:
+# - blender/output/campus.blend
+# - blender/output/campus_render.png
+```
+See [`blender/README.md`](blender/README.md) for full procedural generation details.
+
 ---
 
 ## Configuration & Pipeline Modes
@@ -208,6 +232,30 @@ output/
 ├── layout_5.svg
 └── comparison.html        ← Interactive browser comparison (open this!)
 ```
+
+---
+
+## Person 6 Module — `blender/`
+
+Person 6 owns the complete 2D Blueprint JSON $\rightarrow$ procedural 3D campus generation pipeline in Blender.
+
+### What it does
+
+Consumes Contract 9 Blueprint JSON exported by Person 4's backend (`GET /api/layouts/{layoutId}/blueprint`), procedurally creates all 3D architectural geometry in Blender without external assets, configures materials, roads, trees, lighting, and cameras, and renders high-resolution visualization images and `.blend` project files.
+
+### Pipeline
+
+```
+Blueprint JSON (Contract 9 from P4)
+    ↓
+blender/generator.py
+    ↓
+Procedural 3D Geometry (Buildings, Roads, Green Spaces, Parking, Entrances)
+    ↓
+campus.blend + campus_render.png
+```
+
+See [`blender/README.md`](blender/README.md) for complete module documentation and rendering options.
 
 ---
 
