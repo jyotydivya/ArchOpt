@@ -4017,7 +4017,10 @@ sky.altitude = 10
 
 sky.air_density = 1.0
 
-sky.dust_density = 1.2
+if hasattr(sky, "aerosol_density"):
+    sky.aerosol_density = 1.2
+elif hasattr(sky, "dust_density"):
+    sky.dust_density = 1.2
 
 sky.ozone_density = 1.0
 
