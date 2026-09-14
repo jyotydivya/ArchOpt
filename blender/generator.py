@@ -310,6 +310,22 @@ def validate_blueprint(data):
         data["buildings"]
     ):
 
+        # Contract 9 field compatibility normalization
+        if "id" not in building and "buildingId" in building:
+            building["id"] = building["buildingId"]
+
+        if "zone" not in building:
+            building["zone"] = building.get("type", "general")
+
+        if "floorCount" not in building:
+            building["floorCount"] = max(
+                1,
+                int(round(float(building.get("height", 12)) / 3.5))
+            )
+
+        if "rotation" not in building:
+            building["rotation"] = 0.0
+
         for field in building_fields:
 
             if field not in building:
@@ -4479,12 +4495,3 @@ print(
 )
 
 print("=" * 78)
-
-scene.camera = camera
-
-scene.render.filepath = os.path.join(
-    OUTPUT_DIR,
-    "campus.png"
-)
-
-bpy.ops.render.render(write_still=True)
