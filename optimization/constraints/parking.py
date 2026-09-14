@@ -6,13 +6,8 @@ Hard constraint: the total parking area must be at least
 
 V1 approximation:
   Buildings of type "parking" contribute their full footprint (w × d).
-  If no parking buildings are present, we check that the layout leaves
-  enough unbuilt space for the required parking fraction.
-
-  For a campus prototype, a "parking" zone building or explicit parking area
-  polygon should be present for the constraint to pass with a real layout.
-  Without an explicit parking building the check uses the same estimate
-  approach as green.py (lenient, avoids false positives during early dev).
+  We also estimate surface parking from unbuilt space. This surface
+  parking estimate is added to any explicit parking structures.
 """
 from __future__ import annotations
 
@@ -43,15 +38,13 @@ def compute_parking_ratio(
         if b.type in ("parking", "car_park") or b.zone == "parking"
     )
 
-    if parking_area > 0:
-        return parking_area / site_area
-
-    # Fallback: estimate from unbuilt space
+    # Estimate surface parking from unbuilt space
     built_area = sum(b.width * b.depth for b in layout.buildings)
     road_est = 0.08 * site_area
     unbuilt = max(0.0, site_area - built_area - road_est)
-    # Assume half of unbuilt can be parking
-    return (unbuilt * 0.5) / site_area
+    surface_parking = unbuilt * 0.5
+    
+    return (parking_area + surface_parking) / site_area
 
 
 def check_parking(

@@ -1,0 +1,72 @@
+{
+  "projectId": 1,
+  "layoutId": 1,
+  "site": {
+    "width": 300,
+    "height": 300
+  },
+  "buildings": [
+    {
+      "id": 1,
+      "name": "Academic Block A",
+      "type": "academic",
+      "zone": "academic",
+      "x": 60,
+      "y": 180,
+      "width": 60,
+      "depth": 40,
+      "height": 18,
+      "rotation": 0,
+      "floorCount": 4
+    },
+    {
+      "id": 2,
+      "name": "Library",
+      "type": "library",
+      "zone": "academic",
+      "x": 140,
+      "y": 190,
+      "width": 40,
+      "depth": 30,
+      "height": 12,
+      "rotation": 0,
+      "floorCount": 3
+    },
+    {
+      "id": 3,
+      "name": "Administration",
+      "type": "administration",
+      "zone": "administrative",
+      "x": 130,
+      "y": 40,
+      "width": 40,
+      "depth": 30,
+      "height": 12,
+      "rotation": 0,
+      "floorCount": 3
+    },
+    {
+      "id": 4,
+      "name": "Hostel A",
+      "type": "hostel",
+      "zone": "residential",
+      "x": 220,
+      "y": 180,
+      "width": 45,
+      "depth": 35,
+      "height": 24,
+      "rotation": 0,
+      "floorCount": 6
+    }
+  ],
+  "roads": [],
+  "greenAreas": [],
+  "parkingAreas": [],
+  "entrances": [
+    {
+      "x": 150,
+      "y": 0,
+      "width": 10
+    }
+  ]
+}
