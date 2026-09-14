@@ -37,7 +37,7 @@ pip install -r ml/requirements.txt        # numpy is required; torch is optional
 python -m ml.inference.generate           # 100 candidates on the mock campus, prints one
 python -m ml.training.evaluate --with-optimizer   # overlap / bounds / diversity + P3 validator stats
 python -m ml.training.train               # retrain (about 3 min on CPU), overwrites the checkpoint
-python -m pytest ml/inference/tests       # the root pyproject only collects optimization/tests
+python -m pytest ml/inference/tests       # or plain `pytest` from the root (runs optimization + ml tests)
 ```
 
 Extra keyword-only options: `seed=` (reproducible output; `None` gives fresh
@@ -71,6 +71,8 @@ A diversity term pushes different latent samples apart. Training uses random
 synthetic campuses plus the MVP mock campus.
 
 ## Graph feature layout (for Person 1)
+
+This layout has been reviewed and confirmed by Person 4 (backend).
 
 Contract 5 fixes only the shapes. The generator also needs the site size,
 building ids (the backend checks that they match the DB ids), and
