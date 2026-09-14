@@ -26,10 +26,15 @@ def _layout(*buildings):
 
 class TestParkingRatio:
     def test_explicit_parking_building(self):
-        # One 90×50 parking building = 4500m² on 90000m² = 5%
+        # One 90×50 parking building = 4500m² on 90000m²
         p = _b(1, btype="parking", zone="parking", w=90, d=50)
         ratio = compute_parking_ratio(_layout(p), _req())
-        assert abs(ratio - 4500 / 90000) < 0.001
+        
+        expected_unbuilt = 90000 - 4500 - (0.08 * 90000)
+        expected_surface = expected_unbuilt * 0.5
+        expected_ratio = (4500 + expected_surface) / 90000
+        
+        assert abs(ratio - expected_ratio) < 0.001
 
     def test_no_parking_building_falls_back(self):
         # Only academic buildings — falls back to unbuilt estimate
@@ -48,9 +53,11 @@ class TestCheckParking:
         assert violations == []
 
     def test_fails_with_tiny_parking(self):
+        # Fill the site with a giant building so unbuilt space is ~0
+        huge_bld = _b(2, w=280, d=280)
         # Parking of 1×1 — effectively 0 coverage
         p = _b(1, btype="parking", zone="parking", w=1, d=1, x=0, y=0)
-        violations = check_parking(_layout(p), _req(min_parking=10))
+        violations = check_parking(_layout(huge_bld, p), _req(min_parking=10))
         assert len(violations) == 1
         assert violations[0].type == "PARKING_VIOLATION"
         assert violations[0].severity == "hard"
