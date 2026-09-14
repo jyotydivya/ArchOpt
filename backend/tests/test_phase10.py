@@ -131,12 +131,32 @@ def test_real_mode_missing_modules_surfaces_422_generation_failed(
     the API must return HTTP 422 GENERATION_FAILED and never fall back to mock.
     """
     monkeypatch.setattr(settings, "PIPELINE_MODE", "real")
+    with patch.dict("sys.modules", {"ml.dataset.graph_builder": None}):
+        res = auth_client.post(
+            f"/api/projects/{configured_project}/layout-runs",
+            json={"candidateCount": 100, "topK": 5, "algorithm": "GNN_NSGA2"},
+        )
+        assert res.status_code == 422
+        assert res.json()["detail"] == "GENERATION_FAILED"
+
+
+def test_real_mode_genuine_pipeline_succeeds_without_mocks(
+    auth_client, configured_project, monkeypatch
+):
+    """
+    Verifies that when all real ML and optimization modules are present,
+    PIPELINE_MODE=real executes end-to-end and returns HTTP 200 with completed layouts.
+    """
+    monkeypatch.setattr(settings, "PIPELINE_MODE", "real")
     res = auth_client.post(
         f"/api/projects/{configured_project}/layout-runs",
-        json={"candidateCount": 100, "topK": 5, "algorithm": "GNN_NSGA2"},
+        json={"candidateCount": 10, "topK": 3, "algorithm": "GNN_NSGA2"},
     )
-    assert res.status_code == 422
-    assert res.json()["detail"] == "GENERATION_FAILED"
+    assert res.status_code == 200
+    data = res.json()
+    assert data["status"] == "COMPLETED"
+    assert data["layoutCount"] == 3
+
 
 
 def test_real_mode_p1_failure_surfaces_422_generation_failed(
