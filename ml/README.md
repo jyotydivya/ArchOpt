@@ -25,7 +25,7 @@ This module only generates layouts. It does not filter, validate, or rank them.
 | `training/loss.py` | Self-supervised losses: overlap, relations, zoning, diversity |
 | `training/train.py` | Training loop |
 | `training/evaluate.py` | Population diagnostics |
-| `tests/` | Contract, unit and Person 3 integration tests |
+| `inference/tests/` | Contract, unit and Person 3 integration tests |
 
 ## Run it
 
@@ -37,7 +37,7 @@ pip install -r ml/requirements.txt        # numpy is required; torch is optional
 python -m ml.inference.generate           # 100 candidates on the mock campus, prints one
 python -m ml.training.evaluate --with-optimizer   # overlap / bounds / diversity + P3 validator stats
 python -m ml.training.train               # retrain (about 3 min on CPU), overwrites the checkpoint
-python -m pytest ml/tests                 # the root pyproject only collects optimization/tests
+python -m pytest ml/inference/tests       # the root pyproject only collects optimization/tests
 ```
 
 Extra keyword-only options: `seed=` (reproducible output; `None` gives fresh
@@ -121,7 +121,7 @@ directly.
 
 ## Integration checks
 
-`tests/test_integration_optimizer.py` runs against the real repo code:
+`inference/tests/test_integration_optimizer.py` runs against the real repo code:
 
 - `generate_candidates(mock_graph, 100)` → `optimize_layouts(..., top_k=5)` returns 5 `RankedLayout`s.
 - `backend.services.ml_bridge.run_real_pipeline()` runs end to end. A test

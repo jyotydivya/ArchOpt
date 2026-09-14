@@ -1,6 +1,6 @@
 """
-ml/tests/test_generate.py
-=========================
+ml/inference/tests/test_generate.py
+===================================
 Contract tests for ml.inference.generate.generate_candidates().
 """
 from __future__ import annotations

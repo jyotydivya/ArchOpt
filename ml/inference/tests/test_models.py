@@ -1,6 +1,6 @@
 """
-ml/tests/test_models.py
-=======================
+ml/inference/tests/test_models.py
+=================================
 Unit tests for the feature layout, model plumbing, losses and training loop.
 """
 from __future__ import annotations

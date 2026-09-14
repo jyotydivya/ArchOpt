@@ -1,6 +1,6 @@
 """
-ml/tests/test_integration_optimizer.py
-======================================
+ml/inference/tests/test_integration_optimizer.py
+================================================
 Person 2 → Person 3 integration against the real code in the repo:
 
   * generate_candidates() → optimization.optimizer.optimize_layouts()
