@@ -28,7 +28,7 @@ This document contains 16 parts covering the complete ArchOpt development, integ
 * **PART 13 — API Quick Reference**: Provides a compact API cheat sheet showing endpoint $\rightarrow$ purpose $\rightarrow$ input $\rightarrow$ output $\rightarrow$ consumer.
 * **PART 14 — Do Not Break These Rules**: Contains the critical architecture, API, security, contract, integration, and collaboration rules that everyone must follow.
 * **PART 15 — Final Integration Checklist**: Contains completion checklists for P1–P6 and the final end-to-end system verification.
-* **PART 16 — Repository Cloning & Local Setup Guide**: Covers cloning, prerequisites, Python environment, dependencies, environment variables, PostgreSQL, Alembic migrations, backend startup, testing, person-specific setup, Git workflow, troubleshooting, integration checkpoints, and new-developer quickstart.
+* **PART 16 — Repository Cloning & Local Setup Guide**: Covers cloning, prerequisites, Python environment, backend dependencies, environment variables, PostgreSQL, Alembic migrations, backend startup, frontend setup & dev server, testing, person-specific setup, Git workflow, troubleshooting, integration checkpoints, and new-developer quickstart.
 
 ---
 
@@ -1295,6 +1295,35 @@ cp .env.example .env
   - Dispatches execution directly to `ml.dataset.graph_builder`, `ml.inference.generate`, and `optimization.optimizer`.
   - **Zero Silent Fallback**: If any ML module is missing, throws an exception, or outputs malformed data, the backend strictly returns `422 GENERATION_FAILED`.
 
+#### 16.4.1 Frontend Environment Configuration (`frontend/.env`)
+
+The React frontend SPA (`frontend/`) uses Vite and maintains its own environment configuration distinct from the root backend `.env`.
+
+##### Setup Command:
+```powershell
+# On Windows (from repository root):
+copy frontend\.env.example frontend\.env
+
+# Or from within frontend/ directory:
+copy .env.example .env
+```
+```bash
+# On Linux / macOS (from repository root):
+cp frontend/.env.example frontend/.env
+
+# Or from within frontend/ directory:
+cp .env.example .env
+```
+
+##### Frontend Configuration Reference Table:
+| Variable | Default in `.env.example` | Code Fallback | Required? | Purpose |
+|---|---|---|:---:|---|
+| `VITE_API_BASE_URL` | `http://localhost:8000` | `http://localhost:8000` | Optional | Target URL for backend FastAPI service. Used by Axios client in `frontend/src/api/client.ts`. |
+| `VITE_USE_MOCK_FALLBACK` | `false` | `false` | Optional | Frontend mock fallback toggle. |
+
+> [!TIP]
+> If `frontend/.env` is omitted, `frontend/src/api/client.ts` automatically defaults to `http://localhost:8000`, so the frontend will connect to local backend out of the box. However, creating `frontend/.env` allows pointing to remote backend instances or custom ports.
+
 ---
 
 ### 16.5 PostgreSQL Setup
@@ -1379,7 +1408,77 @@ Follow these 9 verification steps to confirm system health on a fresh machine:
 
 ---
 
-### 16.9 Running the Automated Test Suites
+### 16.9 Frontend Setup & Local Development (Person 5)
+
+The frontend application (`frontend/`) is an interactive Single Page Application (SPA) built with **React 19, TypeScript, Vite 8, and Axios**, providing the campus planning UI, requirements manager, 2D canvas viewer, and Pareto plan comparator.
+
+#### Prerequisites:
+- **Node.js**: `>= 18.0.0` (LTS recommended; tested and verified on Node.js `22.17.0`)
+- **npm**: Standard with Node.js (tested and verified on npm `10.9.2`)
+
+#### 1. Navigate to Frontend Directory:
+```bash
+cd frontend
+```
+
+#### 2. Install Frontend Dependencies:
+```bash
+npm install
+```
+*(Alternatively, run `npm ci` to install exact locked dependencies from `package-lock.json`).*
+
+#### 3. Environment Variable Configuration:
+Copy the frontend environment template to `.env`:
+
+##### On Windows (PowerShell / Command Prompt):
+```powershell
+copy .env.example .env
+```
+
+##### On Linux / macOS (Bash):
+```bash
+cp .env.example .env
+```
+
+- **`VITE_API_BASE_URL`**: Defaults to `http://localhost:8000` (pointing to the FastAPI backend).
+- **Fallback**: If `frontend/.env` is omitted, `frontend/src/api/client.ts` automatically defaults to `http://localhost:8000`.
+
+#### 4. Start the Vite Development Server:
+```bash
+npm run dev
+```
+- **Local Dev URL**: `http://localhost:5173/`
+- **Network / Hot Module Replacement (HMR)**: Powered by Vite with fast React refresh.
+- **CORS Compatibility**: Pre-configured in `backend/config.py` (`http://localhost:5173` and `http://127.0.0.1:5173`).
+
+#### 5. Frontend Build, Lint, and Preview Commands:
+```bash
+# Typecheck & build production bundle
+npm run build      # Runs `tsc -b && vite build` (outputs to frontend/dist)
+
+# Run ESLint validation
+npm run lint       # Runs `eslint .`
+
+# Preview production build locally
+npm run preview    # Runs `vite preview`
+```
+
+#### 6. End-to-End Verification with Backend:
+To verify the complete frontend-to-backend flow:
+1. Ensure PostgreSQL container and backend are running (`PIPELINE_MODE=mock` in root `.env`, port `8000`).
+2. Start the frontend: `npm run dev` in `frontend/` (port `5173`).
+3. Open `http://localhost:5173/register` in your browser and register a test user.
+4. Log in at `http://localhost:5173/login` $\rightarrow$ User session and JWT token are stored in `localStorage` (`archopt_token`).
+5. Create a project at `http://localhost:5173/projects`.
+6. Define site dimensions and requirements (`/projects/:id/requirements`), add buildings (`/projects/:id/buildings`), and set constraints (`/projects/:id/constraints`).
+7. Trigger layout generation (`/projects/:id/generate`) $\rightarrow$ Backend returns top Pareto-ranked candidate layouts.
+8. Compare metrics on the Pareto comparison screen (`/projects/:id/compare`).
+9. Inspect building coordinates on the 2D canvas viewer (`/projects/:id/viewer/:layoutId`).
+10. Select the winning plan $\rightarrow$ Confirms selection and updates project status to `SELECTED`.
+
+---
+
+### 16.10 Running the Automated Test Suites
 
 #### Important: `pyproject.toml` Testpath Nuance
 `pyproject.toml` defines default test options:
@@ -1412,7 +1511,7 @@ pytest backend/tests optimization/tests/ -v
 
 ---
 
-### 16.10 Person-Specific Setup Requirements
+### 16.11 Person-Specific Setup Requirements
 
 #### PERSON 1 (Dataset / Campus Graph):
 - **Local Requirements**: Git, Python 3.11, virtual environment, PyTorch / graph libraries.
@@ -1460,7 +1559,7 @@ Executing `python -m optimization.optimizer` executes Person 3's pipeline agains
 
 ---
 
-### 16.10.1 Person 3 → Backend Integration Status
+### 16.11.1 Person 3 → Backend Integration Status
 
 The backend boundary interfacing Person 4 with Person 3 is fully implemented and regression-tested in `backend/services/ml_bridge.py`:
 - **Input Adapters**:
@@ -1488,10 +1587,15 @@ The backend boundary interfacing Person 4 with Person 3 is fully implemented and
 - **Deliverable**: Full backend API, DB migrations, ML bridge, and test suites.
 
 #### PERSON 5 (Frontend / 2D Planner):
-- **Local Requirements**: Git, Node.js 18+, npm, browser.
-- **Database Needed?**: **NO.** Person 5 connects exclusively via HTTP REST APIs (`http://localhost:8000/api`).
-- **Backend Needed?**: **YES.** Person 5 runs backend locally in `PIPELINE_MODE=mock`.
-- **Deliverable**: React/TypeScript planning interface and 2D canvas layout viewer.
+- **Local Requirements**: Git, Node.js 18+ (tested on `22.17.0`), npm 10+ (tested on `10.9.2`), modern browser.
+- **Database Needed?**: **NO direct PostgreSQL access needed.** Person 5 connects exclusively via HTTP REST APIs (`http://localhost:8000/api`).
+- **Backend Needed?**: **YES.** Person 5 runs the backend locally in `PIPELINE_MODE=mock` so layout generation immediately returns valid Pareto-ranked candidates without ML dependencies.
+- **Frontend Directory**: `frontend/`
+- **Installation**: `cd frontend && npm install`
+- **Configuration**: `copy .env.example .env` (points `VITE_API_BASE_URL` to `http://localhost:8000`)
+- **Dev Server**: `npm run dev` (runs at `http://localhost:5173`)
+- **Build & Quality**: `npm run build` (`tsc -b && vite build`), `npm run lint` (`eslint .`)
+- **Deliverable**: React 19 / TypeScript single-page application, 2D HTML5 canvas layout viewer, requirements/buildings/constraints forms, Pareto plan comparison table, and layout selection flow.
 
 #### PERSON 6 (Blender / 3D Procedural):
 - **Local Requirements**: Git, Blender 3.6 LTS or 4.x with bundled Python environment.
@@ -1501,7 +1605,7 @@ The backend boundary interfacing Person 4 with Person 3 is fully implemented and
 
 ---
 
-### 16.11 Shared Database vs. Local Database
+### 16.12 Shared Database vs. Local Database
 
 - **Option A — Shared PostgreSQL Database**: All teammates connect to a shared hosted database (e.g. cloud or lab server). Enables shared project data but risks data collisions during test runs.
 - **Option B — Local PostgreSQL Container (Recommended & Default)**: Each developer runs their own local Docker container (`archopt-postgres`) on port 5433.
@@ -1509,7 +1613,7 @@ The backend boundary interfacing Person 4 with Person 3 is fully implemented and
 
 ---
 
-### 16.12 Test Data Classifications
+### 16.13 Test Data Classifications
 
 Teammates must strictly distinguish between three data tiers:
 1. **Real Application Data**: Persisted in PostgreSQL when creating projects and running layout runs via the actual API or frontend.
@@ -1520,26 +1624,29 @@ Teammates must strictly distinguish between three data tiers:
 
 ---
 
-### 16.13 First 30-Minute Onboarding Checklist
+### 16.14 First 30-Minute Onboarding Checklist
 
 Complete this checklist within 30 minutes of cloning the repository:
 - [ ] 1. Clone repository: `git clone https://github.com/jyotydivya/ArchOpt.git`
 - [ ] 2. Checkout your feature branch: `git checkout -b feature/p<N>-<name>`
 - [ ] 3. Create virtual environment: `python -m venv .venv` and activate it.
-- [ ] 4. Install dependencies: `pip install -r requirements.txt -r optimization/requirements.txt httpx`
-- [ ] 5. Copy configuration (Mandatory before migrations!): `copy .env.example .env` (Windows) or `cp .env.example .env` (Linux/macOS)
+- [ ] 4. Install backend dependencies: `pip install -r requirements.txt -r optimization/requirements.txt httpx`
+- [ ] 5. Copy backend configuration (Mandatory before migrations!): `copy .env.example .env` (Windows) or `cp .env.example .env` (Linux/macOS)
 - [ ] 6. Start PostgreSQL container: `docker run --name archopt-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=campus_planner -p 5433:5432 -d postgres:15`
 - [ ] 7. Apply migrations: `python -m alembic upgrade head`
 - [ ] 8. Verify migration status: `python -m alembic current` $\rightarrow$ `001_initial_schema (head)`
 - [ ] 9. Run backend tests: `pytest backend/tests -q` $\rightarrow$ Must complete with 0 failures (currently 89 tests).
 - [ ] 10. Run optimization tests: `pytest optimization/tests -q` $\rightarrow$ Must complete with 0 failures (currently 104 tests).
 - [ ] 11. Run P3 standalone demo: `python -m optimization.optimizer` $\rightarrow$ Generates artifacts in `output/`.
-- [ ] 12. Start server: `python -m uvicorn backend.main:app --port 8000`
+- [ ] 12. Start backend server: `python -m uvicorn backend.main:app --port 8000`
 - [ ] 13. Open Swagger at `http://localhost:8000/docs` and test `POST /api/auth/register`.
+- [ ] 14. (Person 5 / Frontend): Navigate to `frontend/`, copy config (`copy .env.example .env` or `cp .env.example .env`), and install dependencies: `npm install`
+- [ ] 15. (Person 5 / Frontend): Verify frontend build & lint: `npm run build` and `npm run lint`
+- [ ] 16. (Person 5 / Frontend): Start frontend dev server: `npm run dev` $\rightarrow$ open `http://localhost:5173` and register/login against the live backend.
 
 ---
 
-### 16.14 Troubleshooting Guide
+### 16.15 Troubleshooting Guide
 
 | Problem / Symptom | Likely Cause | Solution |
 |---|---|---|
@@ -1551,11 +1658,13 @@ Complete this checklist within 30 minutes of cloning the repository:
 | `HTTP 404 PROJECT_NOT_FOUND` / `LAYOUT_NOT_FOUND` | Non-existent ID or wrong user | Verify entity ID and ownership. |
 | `HTTP 422 GENERATION_FAILED` | `PIPELINE_MODE=real` but P1/P2/P3 failed | Check if `ml.dataset.graph_builder`, `ml.inference.generate`, or `optimization.optimizer` raised an exception. |
 | `ModuleNotFoundError: No module named 'ml'` | Upstream ML package not yet created | Keep `PIPELINE_MODE=mock` until P1/P2 submit their code. |
-| CORS errors in Frontend | Frontend port not in `CORS_ORIGINS` | Add frontend URL to `CORS_ORIGINS` in `backend/config.py`. |
+| `Failed to fetch` / Network Error in Frontend | Backend not running or port mismatch | Ensure FastAPI is running on port 8000 and verify `VITE_API_BASE_URL` in `frontend/.env`. |
+| CORS errors in Frontend | Frontend port not in `CORS_ORIGINS` | Ensure frontend runs on `http://localhost:5173` or add frontend URL to `CORS_ORIGINS` in `backend/config.py`. |
+| `npm.ps1 cannot be loaded (PSSecurityException)` | Windows PowerShell execution policy blocks scripts | Execute with `npm.cmd` (e.g. `npm.cmd run dev`) or run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. |
 
 ---
 
-### 16.15 Git Collaboration & Coordination Rules
+### 16.16 Git Collaboration & Coordination Rules
 
 1. **Pull Latest Main**: Always run `git pull origin main` before starting a work session.
 2. **One Branch Per Feature**: Work in `feature/p<N>-<feature-name>`.
@@ -1570,7 +1679,7 @@ Complete this checklist within 30 minutes of cloning the repository:
 
 ---
 
-### 16.16 Ten Integration Checkpoints
+### 16.17 Ten Integration Checkpoints
 
 | Checkpoint | Milestone | Owner | Input | Expected Output | Verification Command | Blocking Condition |
 |:---:|---|:---:|---|---|---|---|
@@ -1581,27 +1690,32 @@ Complete this checklist within 30 minutes of cloning the repository:
 | **CP 5** | P2 GNN Generator Delivery | P2 | `CampusGraph` | 100 `CandidateLayout` objects | Unit test in `ml/inference/tests/` | Blocks Person 3 |
 | **CP 6** | P3 NSGA-II Optimizer Delivery | P3 | 100 candidates + constraints | Top-5 `RankedLayout` objects | `pytest optimization/tests/ -q` & `python -m optimization.optimizer` | Blocks REAL pipeline |
 | **CP 7** | Backend REAL Mode Integration | P4 | `PIPELINE_MODE=real` | Real layouts stored in DB | `POST /layout-runs` in REAL mode | Blocks final system test |
-| **CP 8** | Frontend Complete Workflow | P5 | Backend REST APIs | Full UI planning workflow | Manual flow through React UI | Blocks end-to-end demo |
+| **CP 8** | Frontend Complete Workflow | P5 | Backend REST APIs | Full UI planning workflow | `npm run build` & manual flow through React UI at `http://localhost:5173` | Blocks end-to-end demo |
 | **CP 9** | Blender 3D Procedural Delivery | P6 | Contract 9 Blueprint | 3D Campus model & render | Blender headless execution test | Blocks final visual demo |
 | **CP 10**| Final System Acceptance | All | Full system | Complete pipeline execution | Full test suite + live demo | Project completion |
 
 ---
 
-### 16.17 Final "New Developer" Quickstart
+### 16.18 Final "New Developer" Quickstart
 
 #### IF YOU JUST JOINED ARCHOPT, DO THIS:
 1. Clone repo: `git clone https://github.com/jyotydivya/ArchOpt.git && cd ArchOpt`
 2. Set up venv: `python -m venv .venv` and activate it.
-3. Install dependencies: `pip install -r requirements.txt -r optimization/requirements.txt httpx`
-4. Create `.env` (**Mandatory before migrations**): `copy .env.example .env` (Windows) or `cp .env.example .env` (Linux/macOS).
+3. Install backend dependencies: `pip install -r requirements.txt -r optimization/requirements.txt httpx`
+4. Create backend `.env` (**Mandatory before migrations**): `copy .env.example .env` (Windows) or `cp .env.example .env` (Linux/macOS).
 5. Start PostgreSQL container: `docker run --name archopt-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=campus_planner -p 5433:5432 -d postgres:15`
 6. Run migrations: `python -m alembic upgrade head`
 7. Verify baseline backend tests: `pytest backend/tests -q` (Must complete with 0 failures; reference: 89 passed).
 8. Verify optimization tests: `pytest optimization/tests/ -q` (Must complete with 0 failures; reference: 104 passed).
 9. Run P3 standalone demo: `python -m optimization.optimizer` (Inspect generated `output/comparison.html`).
 10. Start backend: `python -m uvicorn backend.main:app --port 8000`
-11. Open `http://localhost:8000/docs` to inspect the 17 live REST endpoints.
-12. Read your person-specific guide in this document and implement ONLY your owned module!
+11. (If working on Frontend / Person 5):
+    - `cd frontend`
+    - `copy .env.example .env` (Windows) or `cp .env.example .env` (Linux/macOS)
+    - `npm install`
+    - `npm run dev` $\rightarrow$ open `http://localhost:5173`
+12. Open `http://localhost:8000/docs` to inspect the 17 live REST endpoints.
+13. Read your person-specific guide in this document and implement ONLY your owned module!
 
 #### Architectural Responsibility & Dependency Matrix
 
