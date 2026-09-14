@@ -1,3 +1,4 @@
 [tool.pytest.ini_options]
-testpaths = ["optimization/tests", "ml/inference/tests"]
+testpaths = ["optimization/tests", "ml/inference/tests", "ml/dataset/tests"]
 addopts = "-v --tb=short"
+
