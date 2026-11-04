@@ -1,0 +1,787 @@
+{
+  "Scenario 1: Small Campus": {
+    "scenario": "Scenario 1: Small Campus",
+    "site": {
+      "width": 200.0,
+      "height": 200.0,
+      "area_m2": 40000.0
+    },
+    "num_buildings": 5,
+    "num_constraints": 2,
+    "latencies_ms": {
+      "graph_builder_ms": 0.26,
+      "gnn_generate_ms": 142.99,
+      "mock_generate_ms": 9.2,
+      "random_generate_ms": 16.39,
+      "optimizer_ms": 195.41,
+      "total_real_pipeline_ms": 338.66
+    },
+    "gnn_evaluation": {
+      "total_candidates": 100,
+      "feasible_candidates": 62,
+      "feasibility_rate_pct": 62.0,
+      "mean_constraint_score": 0.9475,
+      "std_constraint_score": 0.0711,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 0,
+        "OVERLAP_VIOLATION": 20,
+        "GAP_VIOLATION": 22,
+        "NAMED_MIN_DISTANCE_VIOLATION": 2,
+        "NAMED_MAX_DISTANCE_VIOLATION": 56,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 39
+      },
+      "initial_mean_objectives": {
+        "land_utilization": 0.1306,
+        "green_ratio": 0.6894,
+        "parking_ratio": 0.4166,
+        "accessibility_score": 0.5357,
+        "road_efficiency": 0.7409
+      }
+    },
+    "mock_evaluation": {
+      "feasible_candidates": 0,
+      "feasibility_rate_pct": 0.0,
+      "mean_constraint_score": 0.81,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 0,
+        "OVERLAP_VIOLATION": 100,
+        "GAP_VIOLATION": 52,
+        "NAMED_MIN_DISTANCE_VIOLATION": 16,
+        "NAMED_MAX_DISTANCE_VIOLATION": 39,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 78
+      }
+    },
+    "random_evaluation": {
+      "feasible_candidates": 6,
+      "feasibility_rate_pct": 6.0,
+      "mean_constraint_score": 0.8087,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 21,
+        "OVERLAP_VIOLATION": 75,
+        "GAP_VIOLATION": 57,
+        "NAMED_MIN_DISTANCE_VIOLATION": 3,
+        "NAMED_MAX_DISTANCE_VIOLATION": 65,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 49
+      }
+    },
+    "nsga2_metrics": {
+      "total_fronts": 14,
+      "front_1_size": 4,
+      "hypervolume": 0.019,
+      "spread_spacing": 0.0041
+    },
+    "top5_ranked_layouts": [
+      {
+        "rank": 1,
+        "candidate_id": "candidate-003",
+        "feasible": true,
+        "metrics": {
+          "land_utilization": 0.1306,
+          "green_ratio": 0.6894,
+          "parking_ratio": 0.4166,
+          "accessibility_score": 0.5855,
+          "road_efficiency": 0.7956,
+          "constraint_score": 1.0
+        }
+      },
+      {
+        "rank": 2,
+        "candidate_id": "candidate-040",
+        "feasible": true,
+        "metrics": {
+          "land_utilization": 0.1306,
+          "green_ratio": 0.6894,
+          "parking_ratio": 0.4166,
+          "accessibility_score": 0.6178,
+          "road_efficiency": 0.7815,
+          "constraint_score": 1.0
+        }
+      },
+      {
+        "rank": 3,
+        "candidate_id": "candidate-076",
+        "feasible": true,
+        "metrics": {
+          "land_utilization": 0.1306,
+          "green_ratio": 0.6894,
+          "parking_ratio": 0.4166,
+          "accessibility_score": 0.6154,
+          "road_efficiency": 0.7294,
+          "constraint_score": 1.0
+        }
+      },
+      {
+        "rank": 4,
+        "candidate_id": "candidate-085",
+        "feasible": true,
+        "metrics": {
+          "land_utilization": 0.1306,
+          "green_ratio": 0.6894,
+          "parking_ratio": 0.4166,
+          "accessibility_score": 0.615,
+          "road_efficiency": 0.7415,
+          "constraint_score": 1.0
+        }
+      },
+      {
+        "rank": 5,
+        "candidate_id": "candidate-025",
+        "feasible": true,
+        "metrics": {
+          "land_utilization": 0.1306,
+          "green_ratio": 0.6894,
+          "parking_ratio": 0.4166,
+          "accessibility_score": 0.5416,
+          "road_efficiency": 0.7771,
+          "constraint_score": 1.0
+        }
+      }
+    ],
+    "top5_mean_metrics": {
+      "land_utilization": 0.1306,
+      "green_ratio": 0.6894,
+      "parking_ratio": 0.4166,
+      "accessibility_score": 0.5951,
+      "road_efficiency": 0.765,
+      "constraint_score": 1.0,
+      "feasible": 5
+    }
+  },
+  "Scenario 2: Medium Campus": {
+    "scenario": "Scenario 2: Medium Campus",
+    "site": {
+      "width": 300.0,
+      "height": 300.0,
+      "area_m2": 90000.0
+    },
+    "num_buildings": 9,
+    "num_constraints": 2,
+    "latencies_ms": {
+      "graph_builder_ms": 1.33,
+      "gnn_generate_ms": 25.56,
+      "mock_generate_ms": 9.63,
+      "random_generate_ms": 19.8,
+      "optimizer_ms": 166.25,
+      "total_real_pipeline_ms": 193.14
+    },
+    "gnn_evaluation": {
+      "total_candidates": 100,
+      "feasible_candidates": 16,
+      "feasibility_rate_pct": 16.0,
+      "mean_constraint_score": 0.8612,
+      "std_constraint_score": 0.0808,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 0,
+        "OVERLAP_VIOLATION": 63,
+        "GAP_VIOLATION": 48,
+        "NAMED_MIN_DISTANCE_VIOLATION": 0,
+        "NAMED_MAX_DISTANCE_VIOLATION": 51,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 70
+      },
+      "initial_mean_objectives": {
+        "land_utilization": 0.1917,
+        "green_ratio": 0.6283,
+        "parking_ratio": 0.3775,
+        "accessibility_score": 0.6574,
+        "road_efficiency": 0.8208
+      }
+    },
+    "mock_evaluation": {
+      "feasible_candidates": 1,
+      "feasibility_rate_pct": 1.0,
+      "mean_constraint_score": 0.8337,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 0,
+        "OVERLAP_VIOLATION": 95,
+        "GAP_VIOLATION": 38,
+        "NAMED_MIN_DISTANCE_VIOLATION": 0,
+        "NAMED_MAX_DISTANCE_VIOLATION": 16,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 40
+      }
+    },
+    "random_evaluation": {
+      "feasible_candidates": 0,
+      "feasibility_rate_pct": 0.0,
+      "mean_constraint_score": 0.7612,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 24,
+        "OVERLAP_VIOLATION": 96,
+        "GAP_VIOLATION": 71,
+        "NAMED_MIN_DISTANCE_VIOLATION": 11,
+        "NAMED_MAX_DISTANCE_VIOLATION": 62,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 95
+      }
+    },
+    "nsga2_metrics": {
+      "total_fronts": 15,
+      "front_1_size": 8,
+      "hypervolume": 0.0269,
+      "spread_spacing": 0.013
+    },
+    "top5_ranked_layouts": [
+      {
+        "rank": 1,
+        "candidate_id": "candidate-008",
+        "feasible": true,
+        "metrics": {
+          "land_utilization": 0.1917,
+          "green_ratio": 0.6283,
+          "parking_ratio": 0.3775,
+          "accessibility_score": 0.6809,
+          "road_efficiency": 0.8226,
+          "constraint_score": 1.0
+        }
+      },
+      {
+        "rank": 2,
+        "candidate_id": "candidate-053",
+        "feasible": true,
+        "metrics": {
+          "land_utilization": 0.1917,
+          "green_ratio": 0.6283,
+          "parking_ratio": 0.3775,
+          "accessibility_score": 0.6954,
+          "road_efficiency": 0.8073,
+          "constraint_score": 1.0
+        }
+      },
+      {
+        "rank": 3,
+        "candidate_id": "candidate-013",
+        "feasible": true,
+        "metrics": {
+          "land_utilization": 0.1917,
+          "green_ratio": 0.6283,
+          "parking_ratio": 0.3775,
+          "accessibility_score": 0.6781,
+          "road_efficiency": 0.816,
+          "constraint_score": 1.0
+        }
+      },
+      {
+        "rank": 4,
+        "candidate_id": "candidate-067",
+        "feasible": true,
+        "metrics": {
+          "land_utilization": 0.1917,
+          "green_ratio": 0.6283,
+          "parking_ratio": 0.3775,
+          "accessibility_score": 0.6815,
+          "road_efficiency": 0.8041,
+          "constraint_score": 1.0
+        }
+      },
+      {
+        "rank": 5,
+        "candidate_id": "candidate-035",
+        "feasible": true,
+        "metrics": {
+          "land_utilization": 0.1917,
+          "green_ratio": 0.6283,
+          "parking_ratio": 0.3775,
+          "accessibility_score": 0.6732,
+          "road_efficiency": 0.8193,
+          "constraint_score": 1.0
+        }
+      }
+    ],
+    "top5_mean_metrics": {
+      "land_utilization": 0.1917,
+      "green_ratio": 0.6283,
+      "parking_ratio": 0.3775,
+      "accessibility_score": 0.6818,
+      "road_efficiency": 0.8139,
+      "constraint_score": 1.0,
+      "feasible": 5
+    }
+  },
+  "Scenario 3: Large Campus": {
+    "scenario": "Scenario 3: Large Campus",
+    "site": {
+      "width": 500.0,
+      "height": 500.0,
+      "area_m2": 250000.0
+    },
+    "num_buildings": 16,
+    "num_constraints": 4,
+    "latencies_ms": {
+      "graph_builder_ms": 1.11,
+      "gnn_generate_ms": 27.44,
+      "mock_generate_ms": 8.13,
+      "random_generate_ms": 52.85,
+      "optimizer_ms": 549.24,
+      "total_real_pipeline_ms": 577.78
+    },
+    "gnn_evaluation": {
+      "total_candidates": 100,
+      "feasible_candidates": 2,
+      "feasibility_rate_pct": 2.0,
+      "mean_constraint_score": 0.8,
+      "std_constraint_score": 0.0661,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 0,
+        "OVERLAP_VIOLATION": 92,
+        "GAP_VIOLATION": 68,
+        "NAMED_MIN_DISTANCE_VIOLATION": 4,
+        "NAMED_MAX_DISTANCE_VIOLATION": 100,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 99
+      },
+      "initial_mean_objectives": {
+        "land_utilization": 0.1254,
+        "green_ratio": 0.6946,
+        "parking_ratio": 0.4133,
+        "accessibility_score": 0.7787,
+        "road_efficiency": 0.8729
+      }
+    },
+    "mock_evaluation": {
+      "feasible_candidates": 1,
+      "feasibility_rate_pct": 1.0,
+      "mean_constraint_score": 0.8075,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 0,
+        "OVERLAP_VIOLATION": 94,
+        "GAP_VIOLATION": 60,
+        "NAMED_MIN_DISTANCE_VIOLATION": 0,
+        "NAMED_MAX_DISTANCE_VIOLATION": 50,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 0
+      }
+    },
+    "random_evaluation": {
+      "feasible_candidates": 0,
+      "feasibility_rate_pct": 0.0,
+      "mean_constraint_score": 0.7412,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 18,
+        "OVERLAP_VIOLATION": 100,
+        "GAP_VIOLATION": 89,
+        "NAMED_MIN_DISTANCE_VIOLATION": 16,
+        "NAMED_MAX_DISTANCE_VIOLATION": 97,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 100
+      }
+    },
+    "nsga2_metrics": {
+      "total_fronts": 25,
+      "front_1_size": 1,
+      "hypervolume": 0.0266,
+      "spread_spacing": 0.0
+    },
+    "top5_ranked_layouts": [
+      {
+        "rank": 1,
+        "candidate_id": "candidate-009",
+        "feasible": true,
+        "metrics": {
+          "land_utilization": 0.1254,
+          "green_ratio": 0.6946,
+          "parking_ratio": 0.4133,
+          "accessibility_score": 0.7835,
+          "road_efficiency": 0.8733,
+          "constraint_score": 1.0
+        }
+      },
+      {
+        "rank": 2,
+        "candidate_id": "candidate-073",
+        "feasible": true,
+        "metrics": {
+          "land_utilization": 0.1254,
+          "green_ratio": 0.6946,
+          "parking_ratio": 0.4133,
+          "accessibility_score": 0.7561,
+          "road_efficiency": 0.8574,
+          "constraint_score": 1.0
+        }
+      },
+      {
+        "rank": 3,
+        "candidate_id": "candidate-025",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.1254,
+          "green_ratio": 0.6946,
+          "parking_ratio": 0.4133,
+          "accessibility_score": 0.8261,
+          "road_efficiency": 0.8961,
+          "constraint_score": 0.75
+        }
+      },
+      {
+        "rank": 4,
+        "candidate_id": "candidate-021",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.1254,
+          "green_ratio": 0.6946,
+          "parking_ratio": 0.4133,
+          "accessibility_score": 0.8034,
+          "road_efficiency": 0.8892,
+          "constraint_score": 0.875
+        }
+      },
+      {
+        "rank": 5,
+        "candidate_id": "candidate-087",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.1254,
+          "green_ratio": 0.6946,
+          "parking_ratio": 0.4133,
+          "accessibility_score": 0.8193,
+          "road_efficiency": 0.8878,
+          "constraint_score": 0.75
+        }
+      }
+    ],
+    "top5_mean_metrics": {
+      "land_utilization": 0.1254,
+      "green_ratio": 0.6946,
+      "parking_ratio": 0.4133,
+      "accessibility_score": 0.7977,
+      "road_efficiency": 0.8808,
+      "constraint_score": 0.875,
+      "feasible": 2
+    }
+  },
+  "Scenario 4: High-Density Campus": {
+    "scenario": "Scenario 4: High-Density Campus",
+    "site": {
+      "width": 240.0,
+      "height": 240.0,
+      "area_m2": 57600.0
+    },
+    "num_buildings": 12,
+    "num_constraints": 2,
+    "latencies_ms": {
+      "graph_builder_ms": 0.6,
+      "gnn_generate_ms": 29.83,
+      "mock_generate_ms": 5.97,
+      "random_generate_ms": 35.66,
+      "optimizer_ms": 293.22,
+      "total_real_pipeline_ms": 323.65
+    },
+    "gnn_evaluation": {
+      "total_candidates": 100,
+      "feasible_candidates": 0,
+      "feasibility_rate_pct": 0.0,
+      "mean_constraint_score": 0.7725,
+      "std_constraint_score": 0.048,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 0,
+        "OVERLAP_VIOLATION": 100,
+        "GAP_VIOLATION": 82,
+        "NAMED_MIN_DISTANCE_VIOLATION": 0,
+        "NAMED_MAX_DISTANCE_VIOLATION": 59,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 90
+      },
+      "initial_mean_objectives": {
+        "land_utilization": 0.3559,
+        "green_ratio": 0.4641,
+        "parking_ratio": 0.3237,
+        "accessibility_score": 0.7201,
+        "road_efficiency": 0.8496
+      }
+    },
+    "mock_evaluation": {
+      "feasible_candidates": 0,
+      "feasibility_rate_pct": 0.0,
+      "mean_constraint_score": 0.7925,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 13,
+        "OVERLAP_VIOLATION": 99,
+        "GAP_VIOLATION": 54,
+        "NAMED_MIN_DISTANCE_VIOLATION": 0,
+        "NAMED_MAX_DISTANCE_VIOLATION": 100,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 69
+      }
+    },
+    "random_evaluation": {
+      "feasible_candidates": 0,
+      "feasibility_rate_pct": 0.0,
+      "mean_constraint_score": 0.6863,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 43,
+        "OVERLAP_VIOLATION": 100,
+        "GAP_VIOLATION": 98,
+        "NAMED_MIN_DISTANCE_VIOLATION": 10,
+        "NAMED_MAX_DISTANCE_VIOLATION": 56,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 100
+      }
+    },
+    "nsga2_metrics": {
+      "total_fronts": 18,
+      "front_1_size": 3,
+      "hypervolume": 0.0351,
+      "spread_spacing": 0.0063
+    },
+    "top5_ranked_layouts": [
+      {
+        "rank": 1,
+        "candidate_id": "candidate-032",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.3559,
+          "green_ratio": 0.4641,
+          "parking_ratio": 0.3237,
+          "accessibility_score": 0.7672,
+          "road_efficiency": 0.8681,
+          "constraint_score": 0.75
+        }
+      },
+      {
+        "rank": 2,
+        "candidate_id": "candidate-088",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.3559,
+          "green_ratio": 0.4641,
+          "parking_ratio": 0.3237,
+          "accessibility_score": 0.7796,
+          "road_efficiency": 0.859,
+          "constraint_score": 0.75
+        }
+      },
+      {
+        "rank": 3,
+        "candidate_id": "candidate-094",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.3559,
+          "green_ratio": 0.4641,
+          "parking_ratio": 0.3237,
+          "accessibility_score": 0.7654,
+          "road_efficiency": 0.869,
+          "constraint_score": 0.75
+        }
+      },
+      {
+        "rank": 4,
+        "candidate_id": "candidate-007",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.3559,
+          "green_ratio": 0.4641,
+          "parking_ratio": 0.3237,
+          "accessibility_score": 0.7438,
+          "road_efficiency": 0.8628,
+          "constraint_score": 0.75
+        }
+      },
+      {
+        "rank": 5,
+        "candidate_id": "candidate-047",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.3559,
+          "green_ratio": 0.4641,
+          "parking_ratio": 0.3237,
+          "accessibility_score": 0.7246,
+          "road_efficiency": 0.8677,
+          "constraint_score": 0.75
+        }
+      }
+    ],
+    "top5_mean_metrics": {
+      "land_utilization": 0.3559,
+      "green_ratio": 0.4641,
+      "parking_ratio": 0.3237,
+      "accessibility_score": 0.7561,
+      "road_efficiency": 0.8653,
+      "constraint_score": 0.75,
+      "feasible": 0
+    }
+  },
+  "Scenario 5: Constraint-Heavy Campus": {
+    "scenario": "Scenario 5: Constraint-Heavy Campus",
+    "site": {
+      "width": 300.0,
+      "height": 300.0,
+      "area_m2": 90000.0
+    },
+    "num_buildings": 9,
+    "num_constraints": 8,
+    "latencies_ms": {
+      "graph_builder_ms": 1.18,
+      "gnn_generate_ms": 18.13,
+      "mock_generate_ms": 7.63,
+      "random_generate_ms": 32.06,
+      "optimizer_ms": 139.46,
+      "total_real_pipeline_ms": 158.77
+    },
+    "gnn_evaluation": {
+      "total_candidates": 100,
+      "feasible_candidates": 0,
+      "feasibility_rate_pct": 0.0,
+      "mean_constraint_score": 0.745,
+      "std_constraint_score": 0.0846,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 0,
+        "OVERLAP_VIOLATION": 60,
+        "GAP_VIOLATION": 44,
+        "NAMED_MIN_DISTANCE_VIOLATION": 9,
+        "NAMED_MAX_DISTANCE_VIOLATION": 100,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 72
+      },
+      "initial_mean_objectives": {
+        "land_utilization": 0.1917,
+        "green_ratio": 0.6283,
+        "parking_ratio": 0.3775,
+        "accessibility_score": 0.6578,
+        "road_efficiency": 0.8204
+      }
+    },
+    "mock_evaluation": {
+      "feasible_candidates": 1,
+      "feasibility_rate_pct": 1.0,
+      "mean_constraint_score": 0.7462,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 0,
+        "OVERLAP_VIOLATION": 95,
+        "GAP_VIOLATION": 38,
+        "NAMED_MIN_DISTANCE_VIOLATION": 0,
+        "NAMED_MAX_DISTANCE_VIOLATION": 100,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 40
+      }
+    },
+    "random_evaluation": {
+      "feasible_candidates": 0,
+      "feasibility_rate_pct": 0.0,
+      "mean_constraint_score": 0.5875,
+      "violation_counts": {
+        "BOUNDARY_VIOLATION": 24,
+        "OVERLAP_VIOLATION": 96,
+        "GAP_VIOLATION": 71,
+        "NAMED_MIN_DISTANCE_VIOLATION": 54,
+        "NAMED_MAX_DISTANCE_VIOLATION": 100,
+        "MIN_GREEN_PERCENT_VIOLATION": 0,
+        "MIN_PARKING_PERCENT_VIOLATION": 0,
+        "ROAD_NETWORK_DISCONNECTED": 0,
+        "ZONING_VIOLATION": 95
+      }
+    },
+    "nsga2_metrics": {
+      "total_fronts": 15,
+      "front_1_size": 8,
+      "hypervolume": 0.0268,
+      "spread_spacing": 0.0184
+    },
+    "top5_ranked_layouts": [
+      {
+        "rank": 1,
+        "candidate_id": "candidate-002",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.1917,
+          "green_ratio": 0.6283,
+          "parking_ratio": 0.3775,
+          "accessibility_score": 0.625,
+          "road_efficiency": 0.844,
+          "constraint_score": 0.5
+        }
+      },
+      {
+        "rank": 2,
+        "candidate_id": "candidate-085",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.1917,
+          "green_ratio": 0.6283,
+          "parking_ratio": 0.3775,
+          "accessibility_score": 0.728,
+          "road_efficiency": 0.8143,
+          "constraint_score": 0.75
+        }
+      },
+      {
+        "rank": 3,
+        "candidate_id": "candidate-070",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.1917,
+          "green_ratio": 0.6283,
+          "parking_ratio": 0.3775,
+          "accessibility_score": 0.6866,
+          "road_efficiency": 0.8406,
+          "constraint_score": 0.75
+        }
+      },
+      {
+        "rank": 4,
+        "candidate_id": "candidate-046",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.1917,
+          "green_ratio": 0.6283,
+          "parking_ratio": 0.3775,
+          "accessibility_score": 0.6946,
+          "road_efficiency": 0.8312,
+          "constraint_score": 0.75
+        }
+      },
+      {
+        "rank": 5,
+        "candidate_id": "candidate-032",
+        "feasible": false,
+        "metrics": {
+          "land_utilization": 0.1917,
+          "green_ratio": 0.6283,
+          "parking_ratio": 0.3775,
+          "accessibility_score": 0.707,
+          "road_efficiency": 0.8159,
+          "constraint_score": 0.75
+        }
+      }
+    ],
+    "top5_mean_metrics": {
+      "land_utilization": 0.1917,
+      "green_ratio": 0.6283,
+      "parking_ratio": 0.3775,
+      "accessibility_score": 0.6882,
+      "road_efficiency": 0.8292,
+      "constraint_score": 0.7,
+      "feasible": 0
+    }
+  }
+}

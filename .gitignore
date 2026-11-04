@@ -1,7 +1,48 @@
-# Environment variables
-.env
+# ==============================================================================
+# ArchOpt Project .gitignore
+# ==============================================================================
 
-# Python
+# ------------------------------------------------------------------------------
+# Reports & Document Deliverables (Word & PDF)
+# ------------------------------------------------------------------------------
+*.docx
+*.doc
+*.pdf
+ArchOpt_Final_Report/*.docx
+ArchOpt_Final_Report/*.pdf
+ArchOpt_Final_Project_Report.docx
+ArchOpt_Final_Project_Report.pdf
+Ai_project_report.docx
+ArchOpt_IEEE.pdf
+
+# Temporary text dumps & reference extraction files
+*.txt
+!requirements.txt
+!*/requirements.txt
+!backend/requirements.txt
+!optimization/requirements.txt
+!ml/requirements.txt
+ArchOpt_IEEE_text.txt
+all_ieee_refs.txt
+extracted_references.txt
+prelim_docx.txt
+
+# ------------------------------------------------------------------------------
+# Nested Repositories & Sub-clones
+# ------------------------------------------------------------------------------
+ArchOpt/
+
+# ------------------------------------------------------------------------------
+# Environment & Secrets
+# ------------------------------------------------------------------------------
+.env
+.env.local
+.env.*.local
+*.local
+
+# ------------------------------------------------------------------------------
+# Python & Virtual Environments
+# ------------------------------------------------------------------------------
 __pycache__/
 *.py[cod]
 *$py.class
@@ -10,11 +51,74 @@ __pycache__/
 env/
 venv/
 ENV/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Testing & IDEs
+# ------------------------------------------------------------------------------
+# Testing, Coverage & Linters
+# ------------------------------------------------------------------------------
 .pytest_cache/
 .coverage
+.coverage.*
 htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+
+# ------------------------------------------------------------------------------
+# Node & Frontend
+# ------------------------------------------------------------------------------
+node_modules/
+*/node_modules/
+frontend/dist/
+frontend/build/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ------------------------------------------------------------------------------
+# Blender & Graphics Output
+# ------------------------------------------------------------------------------
+output/
+blender/output/
+*.blend
+*.blend1
+*.blend2
+
+# ------------------------------------------------------------------------------
+# IDEs & System Files
+# ------------------------------------------------------------------------------
 .vscode/
 .idea/
-.venv/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------------------------------------------
+# Logs & Database
+# ------------------------------------------------------------------------------
+*.log
+*.sqlite3
+*.db
